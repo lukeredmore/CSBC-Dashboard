@@ -1,0 +1,57 @@
+tr {
+  text-align: center;
+}
+
+.icon-buttons {
+  font-size: 1.35rem;
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.icon-buttons:hover {
+  cursor: pointer;
+}
+
+.edit {
+  left: 0;
+  &:hover {
+    color: darkgrey;
+  }
+}
+
+.delete {
+  right: 0;
+  &:hover {
+    color: rgb(200, 0, 0);
+  }
+}
+
+.button-container {
+  position: relative;
+  padding: 10px;
+}
+
+
+.schedule-preview {
+    margin-top: 24px;
+
+  &.outlined {
+    border-style: solid !important;
+    border-width: 0.17rem !important;
+    border-color: #0067f4 !important;
+    border-radius: 0.75rem !important;
+  }
+
+  &:hover:not(.outlined) {
+      opacity: 0.75 !important;
+      cursor: pointer;
+  }
+
+}
+
+.times-table {
+    padding: 10px;
+    text-align: center;
+}
