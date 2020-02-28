@@ -2,3 +2,4 @@ node_modules
 npm-debug.log
 .DS_Store
 /*.env
+/src/styles/shards-dashboards.1.1.0.min.css

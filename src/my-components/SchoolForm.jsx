@@ -142,7 +142,7 @@ class SchoolForm extends React.Component {
               <label>Hours of Operation</label>
               <i className="fa fa-asterisk fa-xs" />
               <FormTextarea
-                rows="5"
+                className='hoo-text-area'
                 name="hoo"
                 value={this.state.hoo}
                 onChange={this.handleChange}
