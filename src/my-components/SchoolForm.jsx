@@ -11,7 +11,7 @@ import {
   FormCheckbox
 } from "shards-react"
 
-import "./SchoolForm.css"
+import "./SchoolForm.scss"
 import { getDataFromRef, writeToRef } from "../firebase"
 
 class SchoolForm extends React.Component {
