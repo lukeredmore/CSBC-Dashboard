@@ -43,14 +43,13 @@ class SchoolForm extends React.Component {
     }
   }
   pullStateFromFirebase = async () => {
-    let query = this.props.identifier
-    let response = await getDataFromRef("Schools/" + query)
-    console.log(response)
+    let query = 'Schools/' + this.props.identifier + '/info'
+    let response = await getDataFromRef(query)
     this.setState( response )
   }
   updateFirebase = async () => {
     //data validation here
-    let params = 'Schools/' + this.props.identifier
+    let params = "Schools/" + this.props.identifier + "/info"
     let data = this.state
     await writeToRef(params, data)
     alert("Data successfully updated")

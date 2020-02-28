@@ -9,6 +9,7 @@ const SchedulePreview = ({
   outlined,
   onClick,
   deletePressed,
+  editPressed,
   undeleteable
 }) => (
   <div
@@ -23,7 +24,7 @@ const SchedulePreview = ({
       <div className="times-table">
         <Row form>
           {data.times.map((time, index) => (
-            <Col xs="6">
+            <Col key={index} xs="6">
               {index + 1}. {time}
             </Col>
           ))}
@@ -31,7 +32,9 @@ const SchedulePreview = ({
       </div>
       <CardFooter className="border-top">
         <div className="button-container">
-          <i className="fa fa-edit icon-buttons edit" />
+          <i className="fa fa-edit icon-buttons edit" onClick={() => {
+            editPressed(data)
+          }} />
           {!undeleteable ?
           <i
             className="fa fa-trash icon-buttons delete"
