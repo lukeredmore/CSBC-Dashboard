@@ -25,7 +25,7 @@ const SchedulePreview = ({
         <Row form>
           {data.times.map((time, index) => (
             <Col key={index} xs="6">
-              {index + 1}. {time}
+              {index + 1}. {normalTimeFrom24HrTime(time)}
             </Col>
           ))}
         </Row>
@@ -48,5 +48,16 @@ const SchedulePreview = ({
     </Card>
   </div>
 )
+
+const normalTimeFrom24HrTime = strTime => {
+  let comp = strTime.split(":")
+  let hour = Number(comp[0])
+  if (hour < 13) {
+    return hour + ":" + comp[1] + " AM"
+  } else {
+    hour -= 12
+    return hour + ":" + comp[1] + " PM"
+  }
+}
 
 export default SchedulePreview

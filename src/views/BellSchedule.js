@@ -17,11 +17,7 @@ class BellSchedule extends React.Component {
   }
 
   ensureSomeScheduleIsChecked = () => {
-    if (
-      Array.from(this.state.schedules).filter(
-        e => e.id === this.state.selectedID
-      ).length === 0
-    ) {
+    if (!this.scheduleExistsWithId(this.state.selectedID)) {
       this.setSelectedID(1)
     }
   }
@@ -48,8 +44,12 @@ class BellSchedule extends React.Component {
     this.setState({ currentlyEditing: data })
   }
   modifyAndUpdateSchedule = newD => {
-    //idk why but the new data's already in the state the parameter is unsed
     var array = Array.from(this.state.schedules)
+    if (newD && !this.scheduleExistsWithId(newD.id)) {
+      array.push(newD)
+    }
+
+    //idk why but the new data's already in the state the parameter is unsed
     this.setState({ currentlyEditing: null })
     this.setState({ schedules: array }, this.ensureSomeScheduleIsChecked)
     this.updateSchedulesInFirebase(array)
@@ -58,7 +58,6 @@ class BellSchedule extends React.Component {
   pullStateFromFirebase = async () => {
     const scheduleArray = await getDataFromRef("Schools/seton/schedules")
     const scheduleInUse = await getDataFromRef("Schools/seton/scheduleInUse")
-    console.log(scheduleInUse)
     this.setState({
       schedules: scheduleArray,
       currentlyEditing: null,
@@ -85,6 +84,31 @@ class BellSchedule extends React.Component {
     this.setState({alertMessage: message}, ()=>{
       window.setTimeout(() => {this.setState({alertMessage: null})}, 2500)
     })
+  }
+
+  createNewSchedule = () => {
+    let name = window.prompt("Enter a name for this new schedule: ")
+    if (!name || name === "" || name === " ") return
+    this.setState({
+      currentlyEditing: {
+        title: name,
+        id: this.getNewId(),
+        times: ["", "", "", "", "", "", "", "", "", ""]
+      }
+    })
+  }
+
+  getNewId = () => {
+    const rand = Math.floor(Math.random()*100)
+    if (this.scheduleExistsWithId(rand)) {
+      this.getNewId()
+    } else {
+      return rand
+    }
+  }
+
+  scheduleExistsWithId = (idToCheck) => {
+    return Array.from(this.state.schedules).filter(e => e.id == idToCheck).length !== 0
   }
 
   render() {
@@ -132,7 +156,7 @@ class BellSchedule extends React.Component {
               <div></div>
             )}
             <Col md="6" lg="4" xl="3">
-              <AddSchedulePreview />
+              <AddSchedulePreview onClick={this.createNewSchedule}/>
               <ModifyScheduleModal
                 key={
                   this.state.currentlyEditing
@@ -143,6 +167,7 @@ class BellSchedule extends React.Component {
                 onClose={modifiedData => {
                   this.modifyAndUpdateSchedule(modifiedData)
                 }}
+                onCancel={() => {this.setState({currentlyEditing: null})}}
                 toggle={() => {}}
               />
             </Col>

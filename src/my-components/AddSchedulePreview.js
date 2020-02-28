@@ -1,8 +1,8 @@
 import React from "react"
 import "./AddSchedulePreview.scss"
 
-const AddSchedulePreview = () => (
-  <div className="add-schedule-wrapper">
+const AddSchedulePreview = ({onClick}) => (
+  <div className="add-schedule-wrapper" onClick={onClick}>
     <i className="fa fa-plus add-schedule" />
   </div>
 )
