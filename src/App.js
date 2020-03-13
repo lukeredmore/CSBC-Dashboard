@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter as Router, Route } from "react-router-dom"
+import { Switch } from 'react-router-dom'
 
-import { Redirect } from "react-router-dom"
 import routes from "./routes"
 import withTracker from "./withTracker"
 
@@ -11,6 +11,9 @@ import { auth, getDataFromRef } from "./firebase"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./styles/shards-dashboards.1.1.0.min.css"
+
+import LoginPage from './views/LoginPage'
+import ErrorPage from './views/ErrorPage'
 
 class App extends React.Component {
   unsubscribeFromAuth = null
@@ -32,7 +35,7 @@ class App extends React.Component {
   render() {
     return (
       <Router basename={process.env.REACT_APP_BASENAME || ""}>
-        <div>
+        <Switch>
           {routes.map((route, index) => {
             return (
               <Route
@@ -40,44 +43,28 @@ class App extends React.Component {
                 path={route.path}
                 exact={route.exact}
                 component={withTracker(props => {
-                  console.log(props)
-
-                  
-                  if (props.location.pathname === "/login" && !this.props.currentUser) {
-                    return (
-                      <route.layout {...props}>
-                        <route.component {...props} />
-                      </route.layout>
-                    )
-                  } else if (props.location.pathname === "/login" && this.props.currentUser) {
-                    return <Redirect to="/blog-overview" />
-                  } else if (this.props.currentUser) {
+                  if (this.props.currentUser) {
                     return (
                       <route.layout {...props}>
                         <route.component {...props} />
                       </route.layout>
                     )
                   } else {
-                    return <Redirect to="/login" />
+                    return <LoginPage />
                   }
-                })
-              }
+                })}
               />
             )
           })}
-        </div>
+          <Route
+            key={routes.length}
+            children={<ErrorPage code="404" message="The requested page was not found on our servers."/>}
+          />
+        </Switch>
       </Router>
     )
   }
 }
-
-/*component={withTracker(props => {
-                  return (
-                    <route.layout {...props}>
-                      <route.component {...props} />
-                    </route.layout>
-                  )
-                })}*/
 
 const mapStateToProps = ({ user }) => ({
   currentUser: user.currentUser

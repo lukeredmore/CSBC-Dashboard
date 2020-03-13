@@ -115,7 +115,7 @@ class SchoolForm extends React.Component {
             </Col>
             <Col md="6" className="form-group">
               <label>Main Phone</label>
-              <i className="fa fa-asterisk fa-xs" />
+              <i className="fa fa-asterisk xs" />
               <FormInput
                 type="tel"
                 name="phone"

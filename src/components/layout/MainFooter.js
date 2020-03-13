@@ -1,11 +1,37 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Container, Row, Nav, NavItem, NavLink } from "shards-react";
 import { Link } from "react-router-dom";
 
-const MainFooter = ({ contained, menuItems, copyright }) => (
+const getCopyright = () => {
+  const year = new Date().getFullYear()
+  return "Copyright © " + year + " Catholic Schools of Broome County"
+}
+const menuItems = [
+  {
+    title: "Home",
+    to: "#"
+  },
+  {
+    title: "Services",
+    to: "#"
+  },
+  {
+    title: "About",
+    to: "#"
+  },
+  {
+    title: "Products",
+    to: "#"
+  },
+  {
+    title: "Blog",
+    to: "#"
+  }
+]
+
+const MainFooter = () => (
   <footer className="main-footer d-flex p-2 px-3 bg-white border-top">
-    <Container fluid={contained}>
+    <Container fluid={false}>
       <Row>
         <Nav>
           {menuItems.map((item, idx) => (
@@ -16,52 +42,11 @@ const MainFooter = ({ contained, menuItems, copyright }) => (
             </NavItem>
           ))}
         </Nav>
-        <span className="copyright ml-auto my-auto mr-2">{copyright}</span>
+        <span className="copyright ml-auto my-auto mr-2">{getCopyright()}</span>
       </Row>
     </Container>
   </footer>
 );
-
-MainFooter.propTypes = {
-  /**
-   * Whether the content is contained, or not.
-   */
-  contained: PropTypes.bool,
-  /**
-   * The menu items array.
-   */
-  menuItems: PropTypes.array,
-  /**
-   * The copyright info.
-   */
-  copyright: PropTypes.string
-};
-
-MainFooter.defaultProps = {
-  contained: false,
-  copyright: "Copyright © 2018 DesignRevision",
-  menuItems: [
-    {
-      title: "Home",
-      to: "#"
-    },
-    {
-      title: "Services",
-      to: "#"
-    },
-    {
-      title: "About",
-      to: "#"
-    },
-    {
-      title: "Products",
-      to: "#"
-    },
-    {
-      title: "Blog",
-      to: "#"
-    }
-  ]
-};
+  
 
 export default MainFooter;

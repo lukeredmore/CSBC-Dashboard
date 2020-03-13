@@ -32,13 +32,8 @@ export default function() {
       to: "/user-profile-lite"
     },
     {
-      title: "Errors",
-      htmlBefore: '<i class="material-icons">error</i>',
-      to: "/errors"
-    },
-    {
-      title: "CSBC App Dashboard",
-      htmlBefore: '<i class="material-icons">dashboard</i>',
+      title: "School Information",
+      htmlBefore: '<i class="material-icons">school</i>',
       to: "/dashboard"
     },
     {
