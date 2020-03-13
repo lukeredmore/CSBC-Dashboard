@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 // Layout Types
-import { DefaultLayout } from "./layouts";
+import { DefaultLayout, BlankLayout } from "./layouts";
 
 // Route Views
 import BlogOverview from "./views/BlogOverview";
@@ -14,6 +14,7 @@ import Tables from "./views/Tables";
 import BlogPosts from "./views/BlogPosts";
 import CSBCDashboard from "./views/CSBCDashboard";
 import BellSchedule from './views/BellSchedule'
+import LoginPage from './views/LoginPage'
 
 export default [
   {
@@ -66,5 +67,10 @@ export default [
     path: "/schedule",
     layout: DefaultLayout,
     component: BellSchedule
+  },
+  {
+    path: "/login",
+    layout: BlankLayout,
+    component: LoginPage
   }
 ]

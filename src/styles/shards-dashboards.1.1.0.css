@@ -4266,9 +4266,9 @@ a.text-accent:hover, a.text-accent:focus {
   .main-sidebar .nav .nav-item.active, .main-sidebar .nav .nav-item .nav-link.active, .main-sidebar .nav .nav-item:hover, .main-sidebar .nav .nav-item .nav-link:hover {
     box-shadow: inset 0.1875rem 0 0 #007bff;
     background-color: #FBFBFB;
-    color: #007bff; }
+    color: #F6BE00; }
     .main-sidebar .nav .nav-item.active i, .main-sidebar .nav .nav-item .nav-link.active i, .main-sidebar .nav .nav-item:hover i, .main-sidebar .nav .nav-item .nav-link:hover i {
-      color: #007bff; }
+      color: #F6BE00; }
   .main-sidebar .nav--no-borders .nav-item .nav-link {
     border-bottom: 0; }
   .main-sidebar .nav--no-borders .dropdown-menu {

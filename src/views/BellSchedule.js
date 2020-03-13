@@ -41,18 +41,16 @@ class BellSchedule extends React.Component {
   }
 
   selectScheduleToEdit = data => {
-    this.setState({ currentlyEditing: data })
+    this.setState({
+      currentlyEditing: data,
+      originalTimes: Array.from(data.times)
+    })
   }
-  modifyAndUpdateSchedule = newD => {
-    var array = Array.from(this.state.schedules)
-    if (newD && !this.scheduleExistsWithId(newD.id)) {
-      array.push(newD)
-    }
-
-    //idk why but the new data's already in the state the parameter is unsed
+  modifyAndUpdateSchedule = () => {
+    //The new data's already in the state, so no parameters needed
     this.setState({ currentlyEditing: null })
-    this.setState({ schedules: array }, this.ensureSomeScheduleIsChecked)
-    this.updateSchedulesInFirebase(array)
+    this.ensureSomeScheduleIsChecked()
+    this.updateSchedulesInFirebase(this.state.schedules)
   }
 
   pullStateFromFirebase = async () => {
@@ -72,7 +70,7 @@ class BellSchedule extends React.Component {
   }
 
   setSelectedID = id => {
-    this.setState({ selectedID: id }, async () =>{
+    this.setState({ selectedID: id }, async () => {
       let params = "Schools/seton/scheduleInUse"
       await writeToRef(params, id)
       this.showAutoDismissAlert("Schedule selected successfully!")
@@ -81,8 +79,10 @@ class BellSchedule extends React.Component {
   }
 
   showAutoDismissAlert = message => {
-    this.setState({alertMessage: message}, ()=>{
-      window.setTimeout(() => {this.setState({alertMessage: null})}, 2500)
+    this.setState({ alertMessage: message }, () => {
+      window.setTimeout(() => {
+        this.setState({ alertMessage: null })
+      }, 2500)
     })
   }
 
@@ -99,7 +99,7 @@ class BellSchedule extends React.Component {
   }
 
   getNewId = () => {
-    const rand = Math.floor(Math.random()*100)
+    const rand = Math.floor(Math.random() * 100)
     if (this.scheduleExistsWithId(rand)) {
       this.getNewId()
     } else {
@@ -107,16 +107,24 @@ class BellSchedule extends React.Component {
     }
   }
 
-  scheduleExistsWithId = (idToCheck) => {
-    return Array.from(this.state.schedules).filter(e => e.id == idToCheck).length !== 0
+  scheduleExistsWithId = idToCheck => {
+    return (
+      Array.from(this.state.schedules).filter(e => e.id == idToCheck).length !==
+      0
+    )
   }
 
   render() {
     return (
       <div>
         <Container fluid className="px-0">
-          <Alert theme="success" open={this.state.alertMessage != null} className="mb-0">
-            <i className="fa fa-info mx-2"></i>{this.state.alertMessage}
+          <Alert
+            theme="success"
+            open={this.state.alertMessage != null}
+            className="mb-0"
+          >
+            <i className="fa fa-info mx-2"></i>
+            {this.state.alertMessage}
           </Alert>
         </Container>
         <Container fluid className="main-content-container px-4 pb-4">
@@ -156,23 +164,30 @@ class BellSchedule extends React.Component {
               <div></div>
             )}
             <Col md="6" lg="4" xl="3">
-              <AddSchedulePreview onClick={this.createNewSchedule}/>
-              <ModifyScheduleModal
-                key={
-                  this.state.currentlyEditing
-                    ? this.state.currentlyEditing.id
-                    : null
-                }
-                data={this.state.currentlyEditing}
-                onClose={modifiedData => {
-                  this.modifyAndUpdateSchedule(modifiedData)
-                }}
-                onCancel={() => {this.setState({currentlyEditing: null})}}
-                toggle={() => {}}
-              />
+              <AddSchedulePreview onClick={this.createNewSchedule} />
             </Col>
           </Row>
         </Container>
+        <ModifyScheduleModal
+          key={
+            this.state.currentlyEditing ? this.state.currentlyEditing.id : null
+          }
+          data={this.state.currentlyEditing}
+          onSubmit={this.modifyAndUpdateSchedule}
+          onCancel={(id) => {
+            let ogSchedules = this.state.schedules.map(e => {
+              let copied = e
+              if (copied.id === id) copied.times = this.state.originalTimes
+              return copied
+            })
+            this.setState({
+              currentlyEditing: null,
+              originalTimes: null,
+              schedules: ogSchedules
+            })
+          }}
+          toggle={() => {}}
+        />
       </div>
     )
   }

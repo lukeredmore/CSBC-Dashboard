@@ -1,0 +1,38 @@
+.form-row {
+    justify-content: center;
+}
+
+.image-container {
+    text-align: center;
+    position: relative;
+    top: 40px;
+    z-index: 100;
+}
+
+.logo-image {
+width: 120px;
+-webkit-filter: drop-shadow(5px 5px 10px #888888);
+  filter: drop-shadow(5px 5px 10px #888888);
+}
+
+.login-card {
+    padding: 50px 16px 16px;
+    text-align: center;
+
+    p {
+        margin: 0px;
+    }
+    Button {
+        margin: 16px 0px;
+    }
+}
+
+.vertical-center {
+    position: absolute;
+  top: 50%;
+  right: 0%;
+  left: 0%;
+  -ms-transform: translateX(0%) translateY(-65%);
+  -webkit-transform: translate(0%,-65%);
+  transform: translate(0%,-65%);
+}

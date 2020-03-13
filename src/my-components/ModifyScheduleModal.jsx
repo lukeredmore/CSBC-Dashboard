@@ -17,22 +17,49 @@ class ModifyScheduleModal extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ data: this.props.data })
+    const dataProp = { ...this.props.data }
+    if (dataProp && Object.entries(dataProp).length !== 0) {
+      this.setState({ data: dataProp })
+    }
   }
 
   discardChangesAndClose = () => {
-    this.setState({ data: null })
-    this.props.onCancel()
-  }
-  saveChangesAndClose = () => {
-    this.props.onClose(this.state.data)
+    this.props.onCancel(this.state.data.id)
     this.setState({ data: null })
   }
-  handleChangeOfTime = (event) => {
+  saveChangesAndClose = e => {
+    e.preventDefault()
+  }
+  handleChangeOfTime = event => {
     const { value, name } = event.target
     let newData = this.state.data
     newData.times[name] = value
-    this.setState({ data : newData})
+    this.setState({ data: { ...newData } })
+  }
+
+  validateTimes = arr => {
+    for (var i = 1; i < arr.length; i++) {
+      let previousNum = Number(arr[i - 1].replace(":", ""))
+      let currentNum = Number(arr[i].replace(":", ""))
+      if (previousNum && currentNum) {
+        if (previousNum >= currentNum) {
+          return false
+        }
+      } else {
+        return false
+      }
+    }
+    return true
+  }
+
+  validateBeforeSubmit = e => {
+    e.preventDefault()
+    if (this.validateTimes(this.state.data.times)) {
+      this.props.onSubmit()
+      this.setState({ data: null })
+    } else {
+      alert("Ensure that all times are entered sequentially.")
+    }
   }
 
   periodLabels = [
@@ -53,7 +80,7 @@ class ModifyScheduleModal extends React.Component {
       return (
         <Modal open={true} toggle={this.props.toggle}>
           <ModalHeader>{this.state.data.title}</ModalHeader>
-          <Form onSubmit={this.saveChangesAndClose}>
+          <Form onSubmit={this.validateBeforeSubmit}>
             <ModalBody>
               Unless otherwise specified, please enter the time each period
               ENDS. The system can figure out the rest.

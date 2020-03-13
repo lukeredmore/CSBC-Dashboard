@@ -20,7 +20,10 @@ export default class Notifications extends React.Component {
 
   render() {
     return (
-      <NavItem className="border-right dropdown notifications">
+      <NavItem
+        className="border-right dropdown notifications"
+        style={{ cursor: "pointer" }}
+      >
         <NavLink
           className="nav-link-icon text-center"
           onClick={this.toggleNotifications}
@@ -71,6 +74,6 @@ export default class Notifications extends React.Component {
           </DropdownItem>
         </Collapse>
       </NavItem>
-    );
+    )
   }
 }
