@@ -1,9 +1,9 @@
 import React from "react"
-import { Container, Row, Col, Button, Card, CardHeader, CardBody } from "shards-react"
+import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react"
 
 import PageTitle from "../components/common/PageTitle"
 
-import StudentPassInfo from "../my-components/StudentPassInfo"
+import StudentPassesViewer from "../my-components/StudentPassesViewer"
 
 import { getContinuousDataFromRef } from "../firebase"
 
@@ -12,10 +12,21 @@ class PassesOverview extends React.Component {
 
 componentDidMount() {
     getContinuousDataFromRef("PassSystem/Students", students => {
-        console.log(Object.values(students))
-        this.setState({ 
-            allStudents: Object.values(students),
-            signedOutStudents: this.findSignedOutStudents(Object.values(students))
+        const fullArr = Object.values(students)
+        this.setState({
+          allStudents: fullArr.sort((first, second) => {
+              let year = first.graduationYear - second.graduationYear
+              if (year !== 0) return year
+              let firstArr = first.name.split(" ")
+              let name1 = firstArr.length > 1 ? firstArr[firstArr.length - 1] : firstArr[0]
+              let secondArr = second.name.split(" ")
+              let name2 = secondArr.length > 1 ? secondArr[secondArr.length - 1] : secondArr[0]
+            return name1.localeCompare(name2)
+          }),
+          signedOutStudents: this.findSignedOutStudents(fullArr).sort((first, second) => (
+                new Date(first.timeOfStatusChange) - new Date(second.timeOfStatusChange)
+              )
+          )
         })
     })
 }
@@ -51,50 +62,19 @@ findSignedOutStudents = fullArray => {
               out.
             </p>
             <Row>
-              <Col>
-                <Card small className="mb-4">
-                  <CardHeader className="border-bottom">
-                    <h6 className="m-0">Students Currently Signed Out</h6>
-                  </CardHeader>
-                  <CardBody className="p-0 pb-3">
-                    <table className="table mb-0">
-                      <thead className="bg-light">
-                        <tr>
-                          <th scope="col" className="border-0">
-                            ID(s)
-                          </th>
-                          <th scope="col" className="border-0">
-                            Grade
-                          </th>
-                          <th scope="col" className="border-0">
-                            Name
-                          </th>
-                          <th scope="col" className="border-0">
-                            Status
-                          </th>
-                          <th scope="col" className="border-0">
-                            Last Updated
-                          </th>
-                          <th scope="col" className="border-0">
-                            Log
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {this.state.signedOutStudents
-                          .sort((first, second) => {
-                            return (
-                              new Date(first.timeOfStatusChange) -
-                              new Date(second.timeOfStatusChange)
-                            )
-                          })
-                          .map((student, i) => (
-                            <StudentPassInfo key={i} student={student} />
-                          ))}
-                      </tbody>
-                    </table>
-                  </CardBody>
-                </Card>
+              <Col xl='12'>
+                <StudentPassesViewer
+                  title="Students Currently Signed Out"
+                  data={this.state.signedOutStudents}
+                  emptyDataMessage='No students are signed out at this time'
+                />
+              </Col>
+              <Col xl='12'>
+                <StudentPassesViewer
+                  title="All Students"
+                  data={this.state.allStudents}
+                  emptyDataMessage="No students found"
+                />
               </Col>
             </Row>
           </Container>
