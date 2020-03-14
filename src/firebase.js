@@ -63,6 +63,13 @@ export const getDataFromRef = async (refString) => {
   return dataRef.val()
 }
 
+export const getContinuousDataFromRef = async (refString, callback) => {
+  var dataRef = firebase.database().ref(refString);
+    dataRef.on('value', function(snapshot) {
+    callback(snapshot.val())
+  })
+}
+
 export const writeToRef = async (refString, data) => {
   var dataRef = await firebase.database().ref(refString).set(data)
   return dataRef

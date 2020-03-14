@@ -40,6 +40,11 @@ export default function() {
       title: "Bell Schedule",
       htmlBefore: '<i class="material-icons">schedule</i>',
       to: "/schedule"
+    },
+    {
+      title: "Passes",
+      htmlBefore: '<i class="material-icons">style</i>',
+      to: "/passes"
     }
   ]
 }

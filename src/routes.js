@@ -13,6 +13,7 @@ import Tables from "./views/Tables";
 import BlogPosts from "./views/BlogPosts";
 import CSBCDashboard from "./views/CSBCDashboard";
 import BellSchedule from './views/BellSchedule'
+import PassesOverview from './views/PassesOverview'
 
 export default [
   {
@@ -68,5 +69,11 @@ export default [
     exact: true,
     layout: DefaultLayout,
     component: BellSchedule
+  },
+  {
+    path: "/passes",
+    exact: true,
+    layout: DefaultLayout,
+    component: PassesOverview
   }
 ]
