@@ -1,0 +1,25 @@
+.plus-button {
+  font-size: 1.5rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  text-align: center;
+  background-color: #007bff;
+  color: white;
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  border: 2px solid #007bff;
+
+  &:hover {
+    background-color: white;
+    color: #007bff;
+    cursor: pointer;
+    border: 2px solid #007bff;
+  }
+  i {
+    position: absolute !important;
+    top: 1px !important;
+    right: 1px !important;
+  }
+}

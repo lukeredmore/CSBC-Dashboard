@@ -83,44 +83,58 @@ class StudentPassInfo extends React.Component {
         for (var i = seniorsGradYear + 1; i < seniorsGradYear + 6; i++) {
             gradeLevelMap[i] = gradeLevelMap[i - 1] - 1
         }
-        console.log(gradeLevelMap)
         return gradeLevelMap
   }
 
     render() {
     const student = this.props.student
     return (
-      <tr>
-        <td>
+      <div className='student-pass-info'>
+        <span className="custom-table-row-cell" style={{ width: "16%" }}>
           {student.id.length === 1 ? student.id[0] : <a href="/">View All</a>}
-        </td>
-        <td>{this.gradeLevel}</td>
+        </span>
+        <span className="custom-table-row-cell" style={{ width: "5%" }}>
+          {this.gradeLevel}
+        </span>
 
-        <td>{student.name}</td>
-        <td>{student.currentStatus}</td>
-        <td
+        <span className="custom-table-row-cell" style={{ width: "17%" }}>
+          {student.name}
+        </span>
+        <span className="custom-table-row-cell" style={{ width: "24%" }}>
+          {student.currentStatus}
+        </span>
+        <span
+          className="custom-table-row-cell"
           style={{
+            width: "16%",
             color: this.state.colorStatus,
             fontWeight: this.state.weightStatus
           }}
         >
           {this.state.displayTime}
-        </td>
-        <td>
+        </span>
+        <span className="custom-table-row-cell" style={{ width: "10%" }}>
           <a href="/">
             View <i className="material-icons">launch</i>
           </a>
-        </td>
-        <td>
-          <i className="material-icons toggle-icon" onClick={async () => {
-              const url = privateFiles.FIREBASE_TOOGLE_FUNCTION_URL + "?studentIDNumber=" + student.id[0] + "&location=Manual Override&forceSign=toggle"
-              const res = await fetch(url, {mode: "no-cors"})
-                console.log(res)
-          }}>
+        </span>
+        <span className="custom-table-row-cell" style={{ width: "12%" }}>
+          <i
+            className="material-icons toggle-icon"
+            onClick={async () => {
+              const url =
+                privateFiles.FIREBASE_TOOGLE_FUNCTION_URL +
+                "?studentIDNumber=" +
+                student.id[0] +
+                "&location=Manual Override&forceSign=toggle"
+              const res = await fetch(url, { mode: "no-cors" })
+              console.log(res)
+            }}
+          >
             360
           </i>
-        </td>
-      </tr>
+        </span>
+      </div>
     )
   }
 }

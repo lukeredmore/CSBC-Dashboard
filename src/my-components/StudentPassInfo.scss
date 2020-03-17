@@ -1,11 +1,21 @@
-td {
-   vertical-align: middle !important;
-
-   
+.student-pass-info {
+   padding: 0;
+   margin: 0;
+   border-bottom: 1px solid #e1e5eb;
+   .custom-table-row-cell {
+text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    
 }
 
 .toggle-icon {
-       font-size: 1.5rem !important;
+      transform: scale(2, 2);
        cursor: pointer;
    }
+}
+
+
 
