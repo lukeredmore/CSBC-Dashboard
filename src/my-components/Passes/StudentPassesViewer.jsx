@@ -42,7 +42,7 @@ class StudentPassViewer extends React.Component {
         "&location=Manual Override&forceSign=toggle"
       await fetch(url, { mode: "no-cors" })
     })
-    this.setState({ checkedStudents: [] })
+    this.batchButtonCompletion()
   }
 
   deleteCheckedItems = () => {
@@ -66,7 +66,7 @@ class StudentPassViewer extends React.Component {
   }
 
   batchButtonCompletion = message => {
-    this.setState({ checkedStudents: [] })
+    this.setState({ checkedStudents: [], searchValue: "" })
     if (message) window.alert(message)
   }
 
@@ -98,19 +98,12 @@ class StudentPassViewer extends React.Component {
             onChange={this.handleChange}
           />
           {children}
-          <span className="icon-tray">
-            <ButtonIcon
-              icon="360"
-              title="Manual Toggle"
-              onClick={this.toggleCheckedItems}
-            />
-            <ButtonIcon icon="edit" title="Edit" />
-            <ButtonIcon
-              icon="delete"
-              title="Remove"
-              onClick={this.deleteCheckedItems}
-            />
-          </span>
+          <IconTray
+            className="icon-tray"
+            toggle={this.toggleCheckedItems}
+            edit={() => {}}
+            remove={this.deleteCheckedItems}
+          />
         </CardHeader>
         <CardBody className="p-0 pb-3">
           <div className="table mb-0">
@@ -121,16 +114,17 @@ class StudentPassViewer extends React.Component {
                   : ""
               }
             />
-            
+
             {displayedData.length > 0 ? (
               <div
                 style={{
                   display: "block",
                   overflowY: "auto",
+                  overflowX: "hidden",
                   height:
                     displayedData.length * 44 + 10 > 300
                       ? "300px"
-                      : `${displayedData.length * 44 + 10}px`,
+                      : `${displayedData.length * 47 + 10}px`,
                   width: "100%"
                 }}
               >
@@ -148,11 +142,30 @@ class StudentPassViewer extends React.Component {
 
           {displayedData.length === 0 && !this.state.loading ? (
             <h5 className="empty-data-text">{emptyDataMessage}</h5>
-          ) : null}
+          ) : (
+            <IconTray
+              className="bottom-tray"
+              toggle={this.toggleCheckedItems}
+              edit={() => {}}
+              remove={this.deleteCheckedItems}
+            />
+          )}
         </CardBody>
       </Card>
     )
   }
 }
+
+const IconTray = ({ toggle, edit, remove, className }) => (
+  <span className={className}>
+    <ButtonIcon icon="360" title="Manual Toggle" onClick={toggle} />
+    <ButtonIcon icon="edit" title="Edit" onClick={edit} />
+    <ButtonIcon
+      icon="delete"
+      title="Remove"
+      onClick={remove}
+    />
+  </span>
+)
 
 export default StudentPassViewer

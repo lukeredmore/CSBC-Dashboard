@@ -115,7 +115,7 @@ class StudentPassInfo extends React.Component {
         className={`student-pass-info ${this.props.checked ? " checked" : ""}`}
         onClick={() => this.props.onClick(this.props.student)}
       >
-        <span className="custom-table-row-cell" style={{ width: "10%" }}>
+        <span className="custom-table-row-cell select-column">
           <div className="checkbox-container">
             <FormCheckbox
               checked={this.props.checked}
@@ -125,32 +125,36 @@ class StudentPassInfo extends React.Component {
             />
           </div>
         </span>
-        <span className="custom-table-row-cell" style={{ width: "12%" }}>
+        <span className="custom-table-row-cell id-column">
           {student.id.length === 1 ? student.id[0] : <a href="/">View All</a>}
         </span>
-        <span className="custom-table-row-cell" style={{ width: "6%" }}>
+        <span className="custom-table-row-cell grade-column">
           {this.gradeLevel}
         </span>
 
-        <span className="custom-table-row-cell" style={{ width: "20%" }}>
+        <span className="custom-table-row-cell name-column">
           {student.name}
         </span>
-        <span className="custom-table-row-cell" style={{ width: "26%" }}>
+        <span className="custom-table-row-cell status-column">
           {student.currentStatus}
         </span>
         <span
-          className="custom-table-row-cell"
+          className="custom-table-row-cell updated-column"
           style={{
-            width: "16%",
             color: this.state.colorStatus,
             fontWeight: this.state.weightStatus
           }}
         >
           {this.state.displayTime}
         </span>
-        <span className="custom-table-row-cell" style={{ width: "10%" }}>
+        <span className="custom-table-row-cell log-column">
           <a href="/">
             View <i className="material-icons">launch</i>
+          </a>
+        </span>
+        <span className="custom-table-row-cell more-column">
+          <a href="/">
+            More
           </a>
         </span>
       </div>

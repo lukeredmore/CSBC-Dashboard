@@ -109,7 +109,7 @@ class BellSchedule extends React.Component {
 
   scheduleExistsWithId = idToCheck => {
     return (
-      Array.from(this.state.schedules).filter(e => e.id == idToCheck).length !==
+      Array.from(this.state.schedules).filter(e => e.id === idToCheck).length !==
       0
     )
   }
