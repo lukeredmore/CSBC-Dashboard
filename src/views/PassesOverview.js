@@ -1,16 +1,15 @@
 import React from "react"
-import { Container, Row, Col, Button, Alert } from "shards-react"
+import { Container, Row, Col } from "shards-react"
 
 import PageTitle from "../components/common/PageTitle"
-import Papa from "papaparse"
 import privateFiles from "../client-side-private-files.json"
-import StudentPassesViewer from "../my-components/StudentPassesViewer"
-import AddStudentModal from "../my-components/AddStudentModal.jsx"
+import StudentPassesViewer from "../my-components/Passes/StudentPassesViewer"
+import AddStudentModal from "../my-components/Passes/AddStudentModal.jsx"
 import BannerAlert from "../my-components/BannerAlert"
-import PlusButton from '../my-components/PlusButton'
+import PlusButton from '../my-components/Passes/PlusButton'
 
 import { getContinuousDataFromRef } from "../firebase"
-import BatchStudentUploader from "../my-components/BatchStudentUploader"
+import BatchStudentUploader from "../my-components/Passes/BatchStudentUploader"
 
 class PassesOverview extends React.Component {
   state = {
@@ -21,15 +20,8 @@ class PassesOverview extends React.Component {
   }
 
   componentDidMount() {
-    console.log("parsed")
-    console.log(
-      Papa.parse(`Student Name,Graduation Year,ID Number
-Luke Redmore,2020,1234567890
-James Red,2021,1234567891
-"Adam, Ack",2022,1234567892`)
-    )
     getContinuousDataFromRef("PassSystem/Students", students => {
-      const fullArr = Object.values(students)
+      const fullArr = students ? Object.values(students) : []
       this.setState({
         allStudents: fullArr.sort((first, second) => {
           let year = first.graduationYear - second.graduationYear
@@ -70,6 +62,7 @@ James Red,2021,1234567891
       student.graduationYear
     const res = await fetch(url)
     let body = await res.json()
+    console.log(body)
     this.setState({
       currentlyAdding: null,
       alert: {

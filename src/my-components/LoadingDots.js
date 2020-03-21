@@ -22,8 +22,8 @@ const Dot = styled.div`
   animation-delay: ${props => props.delay};
 `
 
-const LoadingDots = () => (
-  <DotWrapper>
+const LoadingDots = ({style}) => (
+  <DotWrapper style={style}>
         <Dot delay="0s" />
         <Dot delay=".1s" />
         <Dot delay=".2s" />

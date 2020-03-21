@@ -2,9 +2,9 @@ import React from "react"
 
 import FileUpload from "./FileUpload"
 import Papa from "papaparse"
-import privateFiles from "../client-side-private-files.json"
+import privateFiles from "../../client-side-private-files.json"
 
-import { Button, Card, CardHeader, CardBody, Modal, ModalHeader, ModalBody, ModalFooter } from "shards-react"
+import { Button, Card, CardHeader, CardBody, Modal, ModalBody, ModalFooter } from "shards-react"
 
 class BatchStudentUploader extends React.Component {
   state = {
@@ -53,7 +53,7 @@ class BatchStudentUploader extends React.Component {
           toggle={() => this.setState({helperModalShown: false})}
         >
             <ModalBody>
-              A spreadsheet containing ONLY a list of names with the corresponding graduation year (not grade), and ID number in the first, second, and third columns, respectively,
+              A spreadsheet containing ONLY a list of names with the corresponding graduation year (not grade), and ID number in the first, second, and third columns, respectively, may be uploaded. You can create this spreadsheet in either  
             </ModalBody>
             <ModalFooter>
               <Button onClick={() => this.setState({helperModalShown: false})}>Done</Button>
@@ -96,13 +96,14 @@ class BatchStudentUploader extends React.Component {
         }
         rowsTried++
         if (rowsTried === data.length && errorArr.length > 0)
-          alert(
-            "An error occured for the following students. They were not added (or re-added) to the system:\n\n" +
-              errorArr.join("\n")
-          )
+          window.setTimeout(() => { 
+            alert("An error occured for the following students. They were not added (or re-added) to the system:\n\n" + errorArr.join("\n"))
+          }, 500) 
         else if (rowsTried === data.length)
-          alert("All students uploaded sucessfully")
-      })
+          window.setTimeout(() => {
+            alert("All students uploaded sucessfully")
+          }, 500) 
+        })
     } else
       alert(
         "This file is invalid. Please ensure it is correctly formatted and try again."

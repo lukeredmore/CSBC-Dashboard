@@ -7,4 +7,15 @@
     justify-content: center;
     height: 44px;
   }
+  .icon-tray {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+    display: inline-block;
+  }
+  .empty-data-text {
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
 }

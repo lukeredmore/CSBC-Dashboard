@@ -1,8 +1,8 @@
 .minimalist-input-field {
   display: inline-block;
   position: relative;
-    top: 4px;
-    margin: 0px 12px;
+  top: 4px;
+  margin: 0px 8px 0px 12px;
 
   .search-field {
     background: none;
@@ -34,8 +34,12 @@
       left: 170px;
     }
 
+    &:hover + i {
+      color: #aaaaaa;
+    }
+
     &.has-text {
-        border-bottom: 1px solid gray;
+      border-bottom: 1px solid gray;
       outline: none;
       width: 200px;
       padding-right: 30px;
@@ -56,11 +60,12 @@
 
   .search-icon {
     position: absolute;
-    top: 3px;
+    top: 5px;
     left: 1px;
-    font-size: 32px;
-    color: gray;
+    font-size: 26px;
+    color: #999999;
     transition: 300ms ease all;
     cursor: pointer;
+
   }
 }

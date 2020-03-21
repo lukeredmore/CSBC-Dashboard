@@ -3,9 +3,9 @@ import { Container, Row, Col, Alert } from "shards-react"
 
 import PageTitle from "../components/common/PageTitle"
 
-import SchedulePreview from "../my-components/SchedulePreview"
-import AddSchedulePreview from "../my-components/AddSchedulePreview"
-import ModifyScheduleModal from "../my-components/ModifyScheduleModal"
+import SchedulePreview from "../my-components/Schedule/SchedulePreview"
+import AddSchedulePreview from "../my-components/Schedule/AddSchedulePreview"
+import ModifyScheduleModal from "../my-components/Schedule/ModifyScheduleModal"
 
 import { getDataFromRef, writeToRef } from "../firebase"
 

@@ -7,7 +7,7 @@ const MinimalistInputField = ({
   value,
   ...otherProps
 }) => (
-  <div className="minimalist-input-field">
+  <div className="minimalist-input-field" title="Search">
     <input className={`search-field ${value ? " has-text" : ""}`} onChange={handleChange} {...otherProps} />
     <i className="material-icons search-icon">search</i>
   </div>
