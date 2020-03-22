@@ -1,8 +1,8 @@
 import React from 'react'
 import './PlusButton.scss'
 
-const PlusButton = props => (
-  <div className = 'plus-button' onClick={props.onClick}>
+const PlusButton = ({className, onClick}) => (
+  <div className={'plus-button ' + className} onClick={onClick}>
     <i className="material-icons">
       add
     </i>

@@ -24,40 +24,6 @@ export const signInWithGoogle = () => {
   auth.signInWithPopup(provider)
 }
 
-export const createUserProfileDocument = async (userAuth, completion, additionalData) => {
-  if (!userAuth) return
-  const docRef = await firebase
-    .database()
-    .ref("AdminUsers/" + userAuth.uid)
-    .once("value")
-  const user = docRef.val()
-  
-
-  if (!user) {
-    const { displayName, email } = userAuth
-    const createdAt = new Date()
-    const newUser = {
-      displayName,
-      email,
-      createdAt,
-      ...additionalData
-    }
-    try {
-      await firebase
-        .database()
-        .ref("AdminUsers/" + userAuth.uid)
-        .set(newUser)
-        completion(newUser)
-    } catch (e) {
-      console.log("Error creating user: " + e.message)
-    }
-  }
-  else {
-    completion(user)
-  }
-  return docRef
-}
-
 export const getDataFromRef = async (refString) => {
   var dataRef = await firebase.database().ref(refString).once('value')
   return dataRef.val()
@@ -75,3 +41,12 @@ export const writeToRef = async (refString, data) => {
   return dataRef
 }
 
+export const pushToRef = async (refString, data) => {
+  var dataRef = await firebase.database().ref(refString).push(data)
+  return dataRef
+}
+
+export const removeAtRef = async (refString) => {
+  var dataRef = await firebase.database().ref(refString).remove()
+  return dataRef
+}

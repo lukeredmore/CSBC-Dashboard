@@ -6,7 +6,6 @@ import { DefaultLayout } from "./layouts";
 
 // Route Views
 import BlogOverview from "./views/BlogOverview";
-import UserProfileLite from "./views/UserProfileLite";
 import AddNewPost from "./views/AddNewPost";
 import ComponentsOverview from "./views/ComponentsOverview";
 import Tables from "./views/Tables";
@@ -14,6 +13,7 @@ import BlogPosts from "./views/BlogPosts";
 import CSBCDashboard from "./views/CSBCDashboard";
 import BellSchedule from './views/BellSchedule'
 import PassesOverview from './views/PassesOverview'
+import UsersPage from "./views/UsersPage"
 
 export default [
   {
@@ -27,12 +27,6 @@ export default [
     exact: true,
     layout: DefaultLayout,
     component: BlogOverview
-  },
-  {
-    path: "/user-profile-lite",
-    exact: true,
-    layout: DefaultLayout,
-    component: UserProfileLite
   },
   {
     path: "/add-new-post",
@@ -75,5 +69,11 @@ export default [
     exact: true,
     layout: DefaultLayout,
     component: PassesOverview
+  },
+  {
+    path: "/users",
+    exact: true,
+    layout: DefaultLayout,
+    component: UsersPage
   }
 ]

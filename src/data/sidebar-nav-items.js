@@ -27,11 +27,6 @@ export default function() {
       to: "/tables"
     },
     {
-      title: "User Profile",
-      htmlBefore: '<i class="material-icons">person</i>',
-      to: "/user-profile-lite"
-    },
-    {
       title: "School Information",
       htmlBefore: '<i class="material-icons">school</i>',
       to: "/dashboard"
@@ -45,6 +40,11 @@ export default function() {
       title: "Passes",
       htmlBefore: '<i class="material-icons">style</i>',
       to: "/passes"
+    },
+    {
+      title: "Users",
+      htmlBefore: '<i class="material-icons">person</i>',
+      to: "/users"
     }
-  ]
+  ];
 }

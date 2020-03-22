@@ -1,0 +1,30 @@
+.admin-users {
+  h6 {
+    display: inline-block;
+  }
+  .add-user {
+    position: relative;
+    left: 10px;
+    bottom: 4px;
+  }
+  .user-row {
+    border-bottom: 1px solid #e1e5eb;
+    cursor: pointer;
+    &:hover {
+      background-color: #dceaff;
+      border-bottom: 1px solid white;
+    }
+  }
+
+  .allowed {
+      color: rgb(81, 168, 81);
+  }
+  .not-allowed {
+      color: #bbbbbb;
+  }
+  .search-field-container {
+      position: absolute;
+      top: 6px;
+      margin-left: 5px;
+  }
+}

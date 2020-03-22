@@ -77,8 +77,10 @@ const mapDispatchToProps = dispatch => ({
 const verify = async userAuthObj => {
   if (!userAuthObj) return null
   if (!userAuthObj.emailVerified) return null
-  let allowedUsers = await getDataFromRef("PassSystem/AuthenticatedTeachers")
-  if (!allowedUsers.includes(userAuthObj.email)) return null
+  let allUsers = await getDataFromRef("Users")
+  let shouldAllow = Object.values(allUsers).find(e => userAuthObj.email === e.email && e.dashboardAccess);
+  if (!shouldAllow) return null;
+
   return {
     id: userAuthObj.uid,
     email: userAuthObj.email,
