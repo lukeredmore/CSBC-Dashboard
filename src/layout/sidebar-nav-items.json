@@ -1,0 +1,48 @@
+[
+    {
+      "title": "Blog Dashboard",
+      "to": "/blog-overview",
+      "icon": "edit",
+      "htmlAfter": ""
+    },
+    {
+      "title": "Blog Posts",
+      "icon": "vertical_split",
+      "to": "/blog-posts"
+    },
+    {
+      "title": "Add New Post",
+      "icon": "note_add",
+      "to": "/add-new-post"
+    },
+    {
+      "title": "Forms & Components",
+      "icon": "view_module",
+      "to": "/components-overview"
+    },
+    {
+      "title": "Tables",
+      "icon": "table_chart",
+      "to": "/tables"
+    },
+    {
+      "title": "School Information",
+      "icon": "school",
+      "to": "/dashboard"
+    },
+    {
+      "title": "Bell Schedule",
+      "icon": "schedule",
+      "to": "/schedule"
+    },
+    {
+      "title": "Passes",
+      "icon": "style",
+      "to": "/passes"
+    },
+    {
+      "title": "Users",
+      "icon": "person",
+      "to": "/users"
+    }
+  ]

@@ -1,45 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   Collapse,
-  NavItem,
   NavLink
 } from "shards-react";
-import { auth } from '../../../../firebase'
+import { auth } from '../../firebase'
 import { connect } from 'react-redux'
 
 class UserActions extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    visible: false
+  };
 
-    this.state = {
-      visible: false
-    };
-
-    this.toggleUserActions = this.toggleUserActions.bind(this);
-  }
-
-  toggleUserActions() {
+  toggleDropdown = () => {
     this.setState({
       visible: !this.state.visible
     });
-  }
+  };
 
   render() {
-    const { displayName, photoURL } = this.props.currentUser
+    const { displayName, photoURL } = this.props.currentUser;
     return (
-      <NavItem tag={Dropdown} caret toggle={this.toggleUserActions}>
-        <DropdownToggle caret tag={NavLink} className="text-nowrap px-3" style={{cursor: "pointer"}}>
+      <div
+        onClick={this.toggleDropdown}
+        style={{ display: "inline-block", position: "relative"}}
+      >
+        <DropdownToggle tag={NavLink} style={{ cursor: "pointer" }}>
           <img
             className="user-avatar rounded-circle mr-2"
             src={photoURL}
             alt="User Avatar"
+            style={{ height: "45px" }}
           />{" "}
-          <span className="d-none d-md-inline-block">{displayName}</span>
+          <span>{displayName}</span>
+          <i className='material-icons'>keyboard_arrow_down</i>
         </DropdownToggle>
         <Collapse tag={DropdownMenu} right small open={this.state.visible}>
           <DropdownItem tag={Link} to="user-profile">
@@ -49,12 +46,17 @@ class UserActions extends React.Component {
             <i className="material-icons">settings</i> Settings
           </DropdownItem>
           <DropdownItem divider />
-          <DropdownItem tag={Link} to='/' onClick={()=>auth.signOut()} className="text-danger">
+          <DropdownItem
+            tag={Link}
+            to="/"
+            onClick={() => auth.signOut()}
+            className="text-danger"
+          >
             <i className="material-icons text-danger">exit_to_app</i> Logout
           </DropdownItem>
         </Collapse>
-      </NavItem>
-    );
+      </div>
+    )
   }
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 // Layout Types
-import { DefaultLayout } from "./layouts";
+import DefaultLayout from "./layout/DefaultLayout";
 
 // Route Views
 import BlogOverview from "./views/BlogOverview";
@@ -14,6 +14,7 @@ import CSBCDashboard from "./views/CSBCDashboard";
 import BellSchedule from './views/BellSchedule'
 import PassesOverview from './views/PassesOverview'
 import UsersPage from "./views/UsersPage"
+
 
 export default [
   {
@@ -76,4 +77,4 @@ export default [
     layout: DefaultLayout,
     component: UsersPage
   }
-]
+];

@@ -42,17 +42,13 @@ class App extends React.Component {
                 key={index}
                 path={route.path}
                 exact={route.exact}
-                component={withTracker(props => {
-                  if (this.props.currentUser) {
-                    return (
-                      <route.layout {...props}>
-                        <route.component {...props} />
-                      </route.layout>
-                    )
-                  } else {
-                    return <LoginPage />
-                  }
-                })}
+                component={withTracker(props => 
+                  this.props.currentUser
+                  ? <route.layout {...props}>
+                      <route.component {...props} />
+                    </route.layout>
+                  : <LoginPage />
+                )}
               />
             )
           })}
