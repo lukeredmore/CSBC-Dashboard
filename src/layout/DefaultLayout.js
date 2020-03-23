@@ -1,17 +1,35 @@
 import React from "react";
 import "./DefaultLayout.scss";
 
-import UserActions from "./components/UserActions"
+import UserActions from "./components/UserActions";
 
-import items from './sidebar-nav-items.json'
+import items from "./sidebar-nav-items.json";
 
 class DefaultLayout extends React.Component {
   state = {
-    hidden: true
+    sidebarHiddenOnNarrowView: true,
+    contentCoveredOnNarrowView: false
   };
 
+  //These values should be inverses of each other, but there's a delay for style purposes
   toggleShown = () => {
-    this.setState({ hidden: !this.state.hidden });
+    const willHideSidebar = this.state.sidebarHiddenOnNarrowView;
+    if (willHideSidebar) {
+      this.setState({ sidebarHiddenOnNarrowView: false }, () => {
+        window.setTimeout(
+          () =>
+            this.setState({
+              contentCoveredOnNarrowView: true
+            }),
+          300
+        );
+      });
+    } else {
+      this.setState({
+        sidebarHiddenOnNarrowView: true,
+        contentCoveredOnNarrowView: false
+      });
+    }
   };
 
   render() {
@@ -26,20 +44,22 @@ class DefaultLayout extends React.Component {
           />
           <UserActions />
         </div>
-        <div className={"new-sidebar" + (this.state.hidden ? " hidden" : "")}>
-          {items.map((item, i) => (
-            <div
-              key={i}
-              onClick={() => this.props.history.push(item.to)}
-              className={
-                "new-nav-item" +
-                (this.props.match.path.includes(item.to) ? " selected" : "")
-              }
-            >
-              <i className="material-icons">{item.icon}</i>
-              {item.title}
-            </div>
-          ))}
+        <div className={"new-sidebar" + (this.state.sidebarHiddenOnNarrowView ? " hidden" : "")}>
+          <div className="items-container">
+            {items.map((item, i) => (
+              <div
+                key={i}
+                onClick={() => this.props.history.push(item.to)}
+                className={
+                  "new-nav-item" +
+                  (this.props.match.path.includes(item.to) ? " selected" : "")
+                }
+              >
+                <i className="material-icons">{item.icon}</i>
+                {item.title}
+              </div>
+            ))}
+          </div>
           <div className="border-top logo-container">
             <img
               className="d-inline-block align-top mr-1"
@@ -51,10 +71,16 @@ class DefaultLayout extends React.Component {
           </div>
         </div>
         <div className="shadow-overlay" />
-        <div className="component-holder">{this.props.children}</div>
+        <div
+          className={
+            "component-holder" + (this.state.contentCoveredOnNarrowView ? " covered" : "")
+          }
+        >
+          {this.props.children}
+        </div>
       </div>
     );
   }
 }
 
-export default DefaultLayout
+export default DefaultLayout;

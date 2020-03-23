@@ -10,6 +10,8 @@ import {
 import { auth } from '../../firebase'
 import { connect } from 'react-redux'
 
+import "./UserActions.scss"
+
 class UserActions extends React.Component {
   state = {
     visible: false
@@ -25,17 +27,16 @@ class UserActions extends React.Component {
     const { displayName, photoURL } = this.props.currentUser;
     return (
       <div
+        className="user-actions"
         onClick={this.toggleDropdown}
-        style={{ display: "inline-block", position: "relative"}}
       >
-        <DropdownToggle tag={NavLink} style={{ cursor: "pointer" }}>
+        <DropdownToggle tag={NavLink} className='user-dropdown-toggle'>
           <img
-            className="user-avatar rounded-circle mr-2"
+            className="user-avatar rounded-circle mr-2 user-dropdown-image"
             src={photoURL}
             alt="User Avatar"
-            style={{ height: "45px" }}
-          />{" "}
-          <span>{displayName}</span>
+          />
+          <span className="display-name">{displayName}</span>
           <i className='material-icons'>keyboard_arrow_down</i>
         </DropdownToggle>
         <Collapse tag={DropdownMenu} right small open={this.state.visible}>

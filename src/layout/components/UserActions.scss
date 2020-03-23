@@ -1,0 +1,21 @@
+.user-actions {
+    display: inline-block;
+    position: relative;
+    
+    .user-dropdown-toggle {
+        cursor: pointer;
+
+        .user-dropdown-image {
+            height: 45px;
+        }
+
+        @media screen and (max-width: 600px) {
+                .display-name {
+                    display: none;
+                }
+                .material-icons {
+                    display: none;
+                }
+            }
+    }
+}
