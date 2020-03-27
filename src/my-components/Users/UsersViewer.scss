@@ -1,4 +1,25 @@
 .admin-users {
+  .user-card-body {
+    padding: 0 !important;
+    padding-bottom: 10px !important;
+    // box-shadow: inset 1px 4px 9px -6px, inset -4px 1px 9px -6px;
+    .user-table {
+      margin: 0;
+      display: block;
+      overflow-x: scroll;
+     
+      th {
+        padding: 8px 8px;
+      &:first-child {
+        padding-left: 16px;
+      }
+      &:last-child {
+        padding-right: 16px;
+      }
+      }
+    }
+  }
+
   h6 {
     display: inline-block;
   }
@@ -9,6 +30,16 @@
   }
   .user-row {
     border-bottom: 1px solid #e1e5eb;
+    td {
+      padding: 16px 8px;
+      &:first-child {
+        padding-left: 16px;
+      }
+      &:last-child {
+        padding-right: 16px;
+      }
+      
+    }
     cursor: pointer;
     &:hover {
       background-color: #dceaff;
@@ -17,14 +48,14 @@
   }
 
   .allowed {
-      color: rgb(81, 168, 81);
+    color: rgb(81, 168, 81);
   }
   .not-allowed {
-      color: #bbbbbb;
+    color: #bbbbbb;
   }
   .search-field-container {
-      position: absolute;
-      top: 6px;
-      margin-left: 5px;
+    position: absolute;
+    top: 6px;
+    margin-left: 5px;
   }
 }

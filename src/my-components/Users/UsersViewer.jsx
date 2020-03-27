@@ -5,7 +5,7 @@ import { Card, CardBody, CardHeader } from "shards-react"
 import { getContinuousDataFromRef } from "../../firebase"
 import PlusButton from "../Passes/PlusButton"
 import AddUserModal from "./AddUserModal"
-import MinimalistInputField from "../Passes/MinimalistInputField";
+import ExpandableSearchField from "../Passes/ExpandableSearchField";
 import constants from '../../constants.json'
 
 class UsersViewer extends React.Component {
@@ -52,23 +52,24 @@ class UsersViewer extends React.Component {
               className="add-user"
               onClick={() => {
                 const name = prompt("Please enter a name for this user:");
-                this.setState({
-                  currentlyEditing: [
-                    null,
-                    {
-                      name: name,
-                      toggleAccess: true,
-                      passAccess: true,
-                      notifyOutstanding: true,
-                      dashboardAccess: false,
-                      notificationSchool: null
-                    }
-                  ]
-                });
+                if (name)
+                  this.setState({
+                    currentlyEditing: [
+                      null,
+                      {
+                        name: name,
+                        toggleAccess: true,
+                        passAccess: true,
+                        notifyOutstanding: true,
+                        dashboardAccess: false,
+                        notificationSchool: null
+                      }
+                    ]
+                  });
               }}
             />
             <span className="search-field-container">
-              <MinimalistInputField
+              <ExpandableSearchField
                 value={this.state.searchValue}
                 onChange={this.handleChange}
                 name="searchValue"
@@ -79,8 +80,8 @@ class UsersViewer extends React.Component {
               edit.
             </p>
           </CardHeader>
-          <CardBody className="p-0 pb-3">
-            <table className="table mb-0">
+          <CardBody className="user-card-body">
+            <table className="user-table">
               <thead className="bg-light">
                 <tr>
                   <th scope="col" className="border-0">

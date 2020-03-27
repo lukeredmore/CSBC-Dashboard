@@ -2,6 +2,9 @@
   background-color: #fbfbfb;
   color: #f6be00;
   box-shadow: inset 0.1875rem 0 0 #f6be00;
+  @media only screen and (min-width: 600px) {
+          padding-left: 28px;
+        }
   .material-icons {
     color: #f6be00;
   }
@@ -14,7 +17,7 @@
     width: 200px;
     height: 100vh;
     background-color: white;
-    z-index: -1;
+    z-index: 1;
     box-shadow: 0 0.125rem 9.375rem rgba(90, 97, 105, 0.1),
       0 0.25rem 0.5rem rgba(90, 97, 105, 0.12),
       0 0.9375rem 1.375rem rgba(90, 97, 105, 0.1),
@@ -136,7 +139,7 @@
         transition: 300ms ease all;
         font-size: 0.85rem;
         color: #3d5170;
-        padding-left: 25px;
+        padding-left: 20px;
         @media only screen and (max-width: 600px) {
           padding-left: 20px;
         }
@@ -159,15 +162,20 @@
     }
   }
 
-  .component-holder {
+  .component-footer-holder {
     &.covered {
       overflow: hidden;
       height: 100%;
     }
+    display: flex;
+  min-height: 100vh;
+  flex-direction: column;
     position: relative;
     left: calc(200px + env(safe-area-inset-left));
     top: 0px;
-    height: 100vh;
+    .component {
+      flex: 1;
+    }
     width: calc(calc(100vw - 200px) - env(safe-area-inset-left));
     @supports (padding: unquote("max(0px)")) {
       padding-right: unquote(

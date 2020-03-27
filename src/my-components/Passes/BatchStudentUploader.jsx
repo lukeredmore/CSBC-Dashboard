@@ -50,17 +50,28 @@ class BatchStudentUploader extends React.Component {
         </CardBody>
         <Modal
           open={this.state.helperModalShown}
-          toggle={() => this.setState({helperModalShown: false})}
+          toggle={() => this.setState({ helperModalShown: false })}
         >
-            <ModalBody>
-              A spreadsheet containing ONLY a list of names with the corresponding graduation year (not grade), and ID number in the first, second, and third columns, respectively, may be uploaded. You can create this spreadsheet in either  
-            </ModalBody>
-            <ModalFooter>
-              <Button onClick={() => this.setState({helperModalShown: false})}>Done</Button>
-            </ModalFooter>
+          <ModalBody>
+            This tool can process a spreadsheet ONLY a list of names with the
+            corresponding graduation year (not grade) and ID number in the
+            first, second, and third columns, respectively, exported as a .csv
+            file.
+            <br />
+            <br /> It is recomended that a single spreadsheet, shared with teachers,
+            is created with names and graduation years prefilled. Sorting by graduation 
+            year, teachers can use their reader to have students tap their ID into their 
+            corresponding row to be recorded. This would only have to be done once, 
+            then the spreadsheet could be exported and added once all rows are populated.
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={() => this.setState({ helperModalShown: false })}>
+              Done
+            </Button>
+          </ModalFooter>
         </Modal>
       </Card>
-    )
+    );
   }
   handleSubmit = e => {
     e.preventDefault()

@@ -1,71 +1,12 @@
 .minimalist-input-field {
-  display: inline-block;
-  position: relative;
-  top: 4px;
-  margin: 0px 8px 0px 12px;
-
-  .search-field {
-    background: none;
-    background-color: color(0, 0, 0, 0);
-    color: black;
-    font-size: 14px;
-    padding: 10px 10px 2px 3px;
-    display: inline-block;
-    width: 34px;
-    border: none;
-    border-radius: 0;
-    border-bottom: 1px solid white;
-    transition: 300ms ease all;
-    position: relative;
-    z-index: 5;
-
-    &:focus {
-      border-bottom: 1px solid gray;
-      outline: none;
-      width: 200px;
-      padding-right: 30px;
-
-      &:hover {
-        cursor: text;
-      }
+    input {
+        width: calc(100% - 40px);
+        color: #5a6169;
+        font-size: 16px;
+        border: none;
+        border-bottom: 1px solid #5a6169;
+        &:focus {
+            outline: none;
+        }
     }
-
-    &:focus + i {
-      left: 170px;
-    }
-
-    &:hover + i {
-      color: #aaaaaa;
-    }
-
-    &.has-text {
-      border-bottom: 1px solid gray;
-      outline: none;
-      width: 200px;
-      padding-right: 30px;
-
-      &:hover {
-        cursor: text;
-      }
-    }
-
-    &.has-text + i {
-      left: 170px;
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .search-icon {
-    position: absolute;
-    top: 5px;
-    left: 1px;
-    font-size: 26px;
-    color: #999999;
-    transition: 300ms ease all;
-    cursor: pointer;
-
-  }
 }

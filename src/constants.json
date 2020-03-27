@@ -1,9 +1,9 @@
 {
     "SCHOOL_NAMES": {
-        "saints": "All Saints",
-        "seton": "Seton Catholic Central",
-        "john": "St. John's",
-        "james": "St. James",
-        "all": "All Users"
+        "0": "Seton Catholic Central",
+        "1": "St. John's",
+        "2": "All Saints",
+        "3": "St. James",
+        "4": "All Users"
     }
 }

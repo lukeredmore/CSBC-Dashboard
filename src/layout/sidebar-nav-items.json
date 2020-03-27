@@ -44,5 +44,10 @@
       "title": "Users",
       "icon": "person",
       "to": "/users"
+    },
+    {
+      "title": "TODO",
+      "icon": "",
+      "to": "/todo"
     }
   ]

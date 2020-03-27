@@ -5,7 +5,7 @@ import StudentPassInfo from "./StudentPassInfo"
 
 import privateFiles from "../../client-side-private-files.json"
 
-import MinimalistInputField from './MinimalistInputField'
+import ExpandableSearchField from "./ExpandableSearchField";
 import ButtonIcon from "./ButtonIcon"
 import StudentPassHeader from "./StudentPassHeader"
 
@@ -90,7 +90,7 @@ class StudentPassViewer extends React.Component {
             {title}
           </h6>
 
-          <MinimalistInputField
+          <ExpandableSearchField
             type="text"
             label="Search"
             name="searchValue"
@@ -152,7 +152,7 @@ class StudentPassViewer extends React.Component {
           )}
         </CardBody>
       </Card>
-    )
+    );
   }
 }
 

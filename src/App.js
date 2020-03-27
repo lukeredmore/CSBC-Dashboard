@@ -12,8 +12,8 @@ import { auth, getDataFromRef } from "./firebase"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./styles/shards-dashboards.1.1.0.min.css"
 
-import LoginPage from './views/LoginPage'
-import ErrorPage from './views/ErrorPage'
+import LoginPage from './pages/LoginPage'
+import ErrorPage from './pages/ErrorPage'
 
 class App extends React.Component {
   unsubscribeFromAuth = null

@@ -120,11 +120,11 @@ class AddUserModal extends React.Component {
                   onChange={this.handleChange}
                 >
                   <option value="None">None</option>
-                  <option value="all">All Users</option>
-                  <option value="seton">Seton Catholic Central</option>
-                  <option value="john">St. John's</option>
-                  <option value="saints">All Saints</option>
-                  <option value="james">Saint James</option>
+                  <option value="4">All Users</option>
+                  <option value="0">Seton Catholic Central</option>
+                  <option value="1">St. John's</option>
+                  <option value="2">All Saints</option>
+                  <option value="3">St. James</option>
                 </FormSelect>
               </div>
             </ModalBody>

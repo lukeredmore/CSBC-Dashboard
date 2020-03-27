@@ -2,6 +2,7 @@ import React from "react";
 import "./DefaultLayout.scss";
 
 import UserActions from "./components/UserActions";
+import MainFooter from './components/MainFooter'
 
 import items from "./sidebar-nav-items.json";
 
@@ -44,7 +45,12 @@ class DefaultLayout extends React.Component {
           />
           <UserActions />
         </div>
-        <div className={"new-sidebar" + (this.state.sidebarHiddenOnNarrowView ? " hidden" : "")}>
+        <div
+          className={
+            "new-sidebar" +
+            (this.state.sidebarHiddenOnNarrowView ? " hidden" : "")
+          }
+        >
           <div className="items-container">
             {items.map((item, i) => (
               <div
@@ -73,10 +79,12 @@ class DefaultLayout extends React.Component {
         <div className="shadow-overlay" />
         <div
           className={
-            "component-holder" + (this.state.contentCoveredOnNarrowView ? " covered" : "")
+            "component-footer-holder" +
+            (this.state.contentCoveredOnNarrowView ? " covered" : "")
           }
         >
-          {this.props.children}
+          <div className="component">{this.props.children}</div>
+          <MainFooter />
         </div>
       </div>
     );

@@ -10,6 +10,7 @@ import PlusButton from '../my-components/Passes/PlusButton'
 
 import { getContinuousDataFromRef } from "../firebase"
 import BatchStudentUploader from "../my-components/Passes/BatchStudentUploader"
+import OutstandingEmail from "../my-components/Passes/OutstandingEmail"
 
 class PassesOverview extends React.Component {
   state = {
@@ -135,8 +136,11 @@ class PassesOverview extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col md="6">
               <BatchStudentUploader />
+            </Col>
+            <Col md="6">
+              <OutstandingEmail />
             </Col>
           </Row>
         </Container>
@@ -144,17 +148,17 @@ class PassesOverview extends React.Component {
           key={Math.random()}
           data={this.state.currentlyAdding}
           onSubmit={async student => {
-            await this.addStudent(student)
+            await this.addStudent(student);
           }}
           onCancel={() => {
             this.setState({
               currentlyAdding: null
-            })
+            });
           }}
           toggle={() => {}}
         />
       </div>
-    )
+    );
   }
 }
 export default PassesOverview

@@ -5,15 +5,16 @@ import { Redirect } from "react-router-dom";
 import DefaultLayout from "./layout/DefaultLayout";
 
 // Route Views
-import BlogOverview from "./views/BlogOverview";
-import AddNewPost from "./views/AddNewPost";
-import ComponentsOverview from "./views/ComponentsOverview";
-import Tables from "./views/Tables";
-import BlogPosts from "./views/BlogPosts";
-import CSBCDashboard from "./views/CSBCDashboard";
-import BellSchedule from './views/BellSchedule'
-import PassesOverview from './views/PassesOverview'
-import UsersPage from "./views/UsersPage"
+import BlogOverview from "./pages/BlogOverview";
+import AddNewPost from "./pages/AddNewPost";
+import ComponentsOverview from "./pages/ComponentsOverview";
+import Tables from "./pages/Tables";
+import BlogPosts from "./pages/BlogPosts";
+import CSBCDashboard from "./pages/CSBCDashboard";
+import BellSchedule from "./pages/BellSchedule";
+import PassesOverview from "./pages/PassesOverview";
+import UsersPage from "./pages/UsersPage";
+import Todo from "./pages/Todo";
 
 
 export default [
@@ -76,5 +77,11 @@ export default [
     exact: true,
     layout: DefaultLayout,
     component: UsersPage
+  },
+  {
+    path: "/todo",
+    exact: true,
+    layout: DefaultLayout,
+    component: Todo
   }
 ];

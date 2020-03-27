@@ -1,17 +1,17 @@
 import React from "react"
 import "./StudentPassInfo.scss"
 
-// import privateFiles from "../../client-side-private-files.json"
-
 import { getDataFromRef } from "../../firebase"
 import { FormCheckbox } from "shards-react"
+import LogModal from "./LogModal"
 
 class StudentPassInfo extends React.Component {
   state = {
     displayTime: "Loading...",
     colorStatus: "black",
     weightStatus: 400,
-    checked: false
+    checked: false,
+    logDisplayed: null
   }
   interval = null
   gradeLevel = "-"
@@ -21,6 +21,16 @@ class StudentPassInfo extends React.Component {
     this.gradeLevel = (await this.createGradeLevelMap())[
       this.props.student.graduationYear
     ]
+  }
+
+  openModal = (e) => {
+    e.stopPropagation()
+    this.setState({logDisplayed: this.props.student.log})
+  }
+  closeModal = () => {
+    this.setState({logDisplayed: null}, () => {
+      this.props.onClick(this.props.student)
+    })
   }
 
   componentWillUnmount() {
@@ -148,17 +158,18 @@ class StudentPassInfo extends React.Component {
           {this.state.displayTime}
         </span>
         <span className="custom-table-row-cell log-column">
-          <a href="/">
+          <span className="log-link" onClick={this.openModal}>
             View <i className="material-icons">launch</i>
-          </a>
+          </span>
         </span>
         <span className="custom-table-row-cell more-column">
-          <a href="/">
+          <span className="more-link">
             More
-          </a>
+          </span>
         </span>
+        <LogModal key={Math.random()} name={this.props.student.name} logDisplayed={this.state.logDisplayed} onCancel={this.closeModal} toggle={() => {}}/>
       </div>
-    )
+    );
   }
 }
 
