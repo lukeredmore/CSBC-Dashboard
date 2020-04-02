@@ -70,6 +70,7 @@ class BellSchedule extends React.Component {
   }
 
   setSelectedID = id => {
+    if (id === this.state.selectedID) return
     this.setState({ selectedID: id }, async () => {
       let params = "Schools/seton/scheduleInUse"
       await writeToRef(params, id)

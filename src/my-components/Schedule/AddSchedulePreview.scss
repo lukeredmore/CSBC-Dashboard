@@ -9,6 +9,8 @@
   border-width: 0.5rem;
   border-color: darkgray;
   border-radius: 0.75rem;
+  transition: 300ms ease all;
+
 
   &:hover {
       cursor: pointer;

@@ -7,7 +7,9 @@
       margin: 0;
       display: block;
       overflow-x: scroll;
-     
+      tr {
+        text-align: center;
+      }
       th {
         padding: 8px 8px;
       &:first-child {
@@ -29,6 +31,7 @@
     bottom: 4px;
   }
   .user-row {
+    transition: 300ms ease all;
     border-bottom: 1px solid #e1e5eb;
     td {
       padding: 16px 8px;

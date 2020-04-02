@@ -9,7 +9,7 @@ const getCopyright = () => {
 const menuItems = [
   {
     title: "Home",
-    to: "#"
+    to: "/"
   },
   {
     title: "Services",
@@ -31,7 +31,7 @@ const menuItems = [
 
 const MainFooter = () => (
   <footer className="main-footer d-flex p-2 px-3 bg-white border-top">
-    <Container fluid={false}>
+    <Container style={{maxWidth: "100%"}} fluid={false}>
       <Row>
         <Nav>
           {menuItems.map((item, idx) => (

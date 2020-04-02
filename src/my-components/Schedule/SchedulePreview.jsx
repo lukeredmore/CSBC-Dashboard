@@ -14,37 +14,44 @@ const SchedulePreview = ({
 }) => (
   <div
     onClick={() => {
-      onClick(id)
+      onClick(id);
     }}
   >
     <Card small className={"schedule-preview" + (outlined ? " outlined" : "")}>
-      <CardHeader className="border-bottom">
+      <CardHeader>
         <h6 className="m-0">{data.title}</h6>
       </CardHeader>
+      <div className="custom-border" />
       <div className="times-table">
         <Row form>
           {rearrange(data.times).map((time, index) => (
             <Col key={index} xs="6">
-              {index !== 0 ? "Period " + time.period : "First Bell"}: {normalTimeFrom24HrTime(time.value)}
+              {index !== 0 ? "Period " + time.period : "First Bell"}:{" "}
+              {normalTimeFrom24HrTime(time.value)}
             </Col>
           ))}
         </Row>
       </div>
-      <CardFooter className="border-top">
+      <div className="custom-border" />
+      <CardFooter>
         <div className="button-container">
-          <i className="fa fa-edit icon-buttons edit" 
-          onClick={() => editPressed(data)} />
-          {!undeleteable ?
           <i
-            className="fa fa-trash icon-buttons delete"
-            onClick={() => deletePressed(data)}
+            className="fa fa-edit icon-buttons edit"
+            onClick={() => editPressed(data)}
           />
-           : <i/>}
+          {!undeleteable ? (
+            <i
+              className="fa fa-trash icon-buttons delete"
+              onClick={() => deletePressed(data)}
+            />
+          ) : (
+            <i />
+          )}
         </div>
       </CardFooter>
     </Card>
   </div>
-)
+);
 
 
 const normalTimeFrom24HrTime = strTime => {
