@@ -6,30 +6,18 @@ import routes from "./routes"
 import withTracker from "./withTracker"
 
 import { connect } from "react-redux"
-import { setCurrentUser } from "./redux/user/user.actions"
-import { auth, getDataFromRef } from "./firebase"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./styles/shards-dashboards.1.1.0.min.css"
 
 import LoginPage from './pages/LoginPage'
 import ErrorPage from './pages/ErrorPage'
+import { checkUserSession } from "./redux/user/user.actions"
 
 class App extends React.Component {
-  unsubscribeFromAuth = null
 
   componentDidMount() {
-    const { setCurrentUser } = this.props
-
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      const userToSet = await verify(userAuth)
-      setCurrentUser(userToSet)
-      if (!userToSet) auth.signOut()
-    })
-  }
-
-  componentWillUnmount() {
-    this.unsubscribeFromAuth()
+    this.props.checkUserSession()
   }
 
   render() {
@@ -67,23 +55,7 @@ const mapStateToProps = ({ user }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  checkUserSession: () => dispatch(checkUserSession())
 })
-
-const verify = async userAuthObj => {
-  if (!userAuthObj) return null
-  if (!userAuthObj.emailVerified) return null
-  let allUsers = await getDataFromRef("Users")
-  let shouldAllow = Object.values(allUsers).find(e => userAuthObj.email === e.email && e.dashboardAccess);
-  if (!shouldAllow) return null;
-
-  return {
-    id: userAuthObj.uid,
-    email: userAuthObj.email,
-    displayName: userAuthObj.displayName,
-    photoURL: userAuthObj.photoURL,
-    phoneNumber: userAuthObj.phoneNumber
-  }
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -5,17 +5,22 @@ import Logo from "../assets/lettermark.png"
 
 import LoadingDots from "../my-components/LoadingDots"
 
-import { signInWithGoogle } from "../firebase"
+import { signInStart } from "../redux/user/user.actions"
+import { connect } from "react-redux"
 
 class LoginPage extends React.Component {
   state = {
     loading: true
   }
 
+  loadingTimeout = null
   componentDidMount() {
-    window.setTimeout(() => {
-      this.setState({ loading: false })
-    }, 1500)
+    this.loadingTimeout = window.setTimeout(() => {
+      this.setState({ loading: false });
+    }, 1500);
+  }
+  componentWillUnmount() {
+    window.clearTimeout(this.loadingTimeout);
   }
 
   render() {
@@ -42,7 +47,7 @@ class LoginPage extends React.Component {
                     block
                     size="lg"
                     theme="primary"
-                    onClick={signInWithGoogle}
+                    onClick={this.props.signIn}
                   >
                     <i className="fa fa-external-link-alt" /> Sign In With
                     Google
@@ -58,4 +63,7 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage
+const mapDispatchToProps = dispatch => ({
+  signIn: () => dispatch(signInStart())
+})
+export default connect(null, mapDispatchToProps)(LoginPage)

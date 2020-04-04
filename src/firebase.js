@@ -18,11 +18,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 export const auth = firebase.auth()
-const provider = new firebase.auth.GoogleAuthProvider()
-provider.setCustomParameters({ prompt: "select_account" })
-export const signInWithGoogle = () => {
-  auth.signInWithPopup(provider)
-}
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: "select_account" });
 
 export const getDataFromRef = async (refString) => {
   var dataRef = await firebase.database().ref(refString).once('value')
@@ -50,3 +47,12 @@ export const removeAtRef = async (refString) => {
   var dataRef = await firebase.database().ref(refString).remove()
   return dataRef
 }
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};

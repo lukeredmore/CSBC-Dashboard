@@ -7,10 +7,10 @@ import {
   Collapse,
   NavLink
 } from "shards-react";
-import { auth } from '../../firebase'
 import { connect } from 'react-redux'
 
 import "./UserActions.scss"
+import SignOutButton from "./SignOutButton";
 
 class UserActions extends React.Component {
   state = {
@@ -47,14 +47,7 @@ class UserActions extends React.Component {
             <i className="material-icons">settings</i> Settings
           </DropdownItem>
           <DropdownItem divider />
-          <DropdownItem
-            tag={Link}
-            to="/"
-            onClick={() => auth.signOut()}
-            className="text-danger"
-          >
-            <i className="material-icons text-danger">exit_to_app</i> Logout
-          </DropdownItem>
+          <SignOutButton />
         </Collapse>
       </div>
     )
@@ -65,4 +58,4 @@ const mapStateToProps = ({user}) => ({
   currentUser: user.currentUser
 })
 
-export default connect(mapStateToProps)(UserActions)
+export default connect(mapStateToProps)(UserActions);
