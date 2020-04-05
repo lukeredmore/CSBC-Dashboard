@@ -1,0 +1,9 @@
+{
+    "prettier.semi": false,
+    "prettier.jsxSingleQuote": true,
+    "prettier.arrowParens": "avoid",
+    "prettier.jsxBracketSameLine": true,
+    "prettier.printWidth": 120,
+    "prettier.singleQuote": true,
+    "javascript.format.semicolons": "remove"
+}

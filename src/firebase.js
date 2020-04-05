@@ -1,8 +1,8 @@
-import firebase from 'firebase/app'
-import 'firebase/database'
-import 'firebase/auth'
+import firebase from "firebase/app";
+import "firebase/database";
+import "firebase/auth";
 
-import keys from './client-side-private-files.json'
+import keys from "./client-side-private-files.json";
 
 const firebaseConfig = {
   apiKey: keys.FIREBASE_API_KEY,
@@ -12,41 +12,41 @@ const firebaseConfig = {
   storageBucket: "csbcprod.appspot.com",
   messagingSenderId: "230246212278",
   appId: keys.FIREBASE_APP_ID,
-  measurementId: "G-WXC439C5CZ"
-}
+  measurementId: "G-WXC439C5CZ",
+};
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig);
 
-export const auth = firebase.auth()
+export const auth = firebase.auth();
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: "select_account" });
 
-export const getDataFromRef = async (refString) => {
-  var dataRef = await firebase.database().ref(refString).once('value')
-  return dataRef.val()
-}
+export const getDataFromRef = async refString => {
+  var dataRef = await firebase.database().ref(refString).once("value");
+  return dataRef.val();
+};
 
 export const getContinuousDataFromRef = async (refString, callback) => {
   var dataRef = firebase.database().ref(refString);
-    dataRef.on('value', function(snapshot) {
-    callback(snapshot.val())
-  })
-}
+  dataRef.on("value", function (snapshot) {
+    callback(snapshot.val());
+  });
+};
 
 export const writeToRef = async (refString, data) => {
-  var dataRef = await firebase.database().ref(refString).set(data)
-  return dataRef
-}
+  var dataRef = await firebase.database().ref(refString).set(data);
+  return dataRef;
+};
 
 export const pushToRef = async (refString, data) => {
-  var dataRef = await firebase.database().ref(refString).push(data)
-  return dataRef
-}
+  var dataRef = await firebase.database().ref(refString).push(data);
+  return dataRef;
+};
 
-export const removeAtRef = async (refString) => {
-  var dataRef = await firebase.database().ref(refString).remove()
-  return dataRef
-}
+export const removeAtRef = async refString => {
+  var dataRef = await firebase.database().ref(refString).remove();
+  return dataRef;
+};
 
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
@@ -55,4 +55,23 @@ export const getCurrentUser = () => {
       resolve(userAuth);
     }, reject);
   });
+};
+
+export const sendAuthenticatedRequest = async url => {
+  try {
+    const authToken = await auth.currentUser.getIdToken();
+    const config = {
+      headers: { Authorization: `Bearer ${authToken}` },
+      method: "GET",
+    };
+    const response = await fetch(url, config);
+    const status = response.status;
+    const { message } = await response.json();
+    return { status, message };
+  } catch (err) {
+    return {
+      status: 500,
+      message: err,
+    };
+  }
 };

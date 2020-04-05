@@ -8,6 +8,7 @@ import privateFiles from "../../client-side-private-files.json"
 import ExpandableSearchField from "./ExpandableSearchField";
 import ButtonIcon from "./ButtonIcon"
 import StudentPassHeader from "./StudentPassHeader"
+import { sendAuthenticatedRequest } from "../../firebase"
 
 class StudentPassViewer extends React.Component {
   state = {
@@ -40,7 +41,8 @@ class StudentPassViewer extends React.Component {
         "?studentIDNumber=" +
         e.id[0] +
         "&location=Manual Override&forceSign=toggle"
-      await fetch(url, { mode: "no-cors" })
+      let response = await sendAuthenticatedRequest(url);
+      console.log(response)
     })
     this.batchButtonCompletion()
   }
