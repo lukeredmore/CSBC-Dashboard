@@ -1,26 +1,25 @@
-import React from "react"
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
-import { Switch } from 'react-router-dom'
+import React from "react";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { Switch } from "react-router-dom";
 
-import './App.scss'
+import "./App.scss";
 
 import { adminRoutes, routes } from "./routes";
-import withTracker from "./withTracker"
+import withTracker from "./withTracker";
 
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 
-import "bootstrap/dist/css/bootstrap.min.css"
-import "./styles/shards-dashboards.1.1.0.min.css"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/shards-dashboards.1.1.0.min.css";
 
-import LoginPage from './pages/LoginPage'
-import ErrorPage from './pages/ErrorPage'
-import { checkUserSession } from "./redux/user/user.actions"
-import { verifyLoginStatus } from "./firebase"
+import LoginPage from "./pages/LoginPage";
+import ErrorPage from "./pages/ErrorPage";
+import { checkUserSession } from "./redux/user/user.actions";
+import { verifyLoginStatus } from "./firebase";
 
 class App extends React.Component {
-
   componentDidMount() {
-    this.props.checkUserSession()
+    this.props.checkUserSession();
   }
 
   render() {
@@ -33,9 +32,14 @@ class App extends React.Component {
               path={route.path}
               exact={route.exact}
               component={withTracker(props =>
-                this.props.currentUser && verifyLoginStatus() ? (
-
+                (this.props.currentUser && verifyLoginStatus()) || !route.requiresLogin ? (
+                  route.layout ? (
+                    <route.layout {...props}>
+                      <route.component {...props} />
+                    </route.layout>
+                  ) : (
                     <route.component {...props} />
+                  )
                 ) : (
                   <LoginPage />
                 )
@@ -80,10 +84,10 @@ class App extends React.Component {
 
 const mapStateToProps = ({ user }) => ({
   currentUser: user.currentUser
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   checkUserSession: () => dispatch(checkUserSession())
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App);

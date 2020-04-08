@@ -1,12 +1,12 @@
 import React from "react";
-import "./DefaultLayout.scss";
+import "./AdminLayout.scss";
 
 import UserActions from "./components/UserActions";
 import MainFooter from './components/MainFooter'
 
 import items from "./sidebar-nav-items.json";
 
-class DefaultLayout extends React.Component {
+class AdminLayout extends React.Component {
   state = {
     sidebarHiddenOnNarrowView: true,
     contentCoveredOnNarrowView: false
@@ -35,7 +35,7 @@ class DefaultLayout extends React.Component {
 
   render() {
     return (
-      <div className="default-layout">
+      <div className="admin-layout">
         <div className="user-container border-bottom">
           <i className="fa fa-bars show-menu" onClick={this.toggleShown} />
           <img
@@ -91,4 +91,4 @@ class DefaultLayout extends React.Component {
   }
 }
 
-export default DefaultLayout;
+export default AdminLayout;

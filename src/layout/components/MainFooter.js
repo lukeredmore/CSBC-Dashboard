@@ -8,22 +8,26 @@ const getCopyright = () => {
 }
 const menuItems = [
   {
+    title: "Toggle Home",
+    to: "/"
+  },
+  {
     title: "Dashboard Home",
     to: "/admin"
   },
   {
-    title: "Pass Toggle",
-    to: "/"
-  },
-  {
     title: "About",
-    to: "/About"
+    to: "/about"
   },
   {
     title: "Help",
     to: "/help"
+  },
+  {
+    title: "Terms",
+    to: "/terms"
   }
-]
+];
 
 const MainFooter = () => (
   <footer className="main-footer d-flex p-2 px-3 bg-white border-top">

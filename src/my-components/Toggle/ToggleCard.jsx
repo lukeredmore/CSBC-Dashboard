@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardFooter } from "shards-react";
+import { Card, CardBody } from "shards-react";
 
 import "./ToggleCard.scss";
 import {
@@ -8,7 +8,6 @@ import {
   writeToRef
 } from "../../firebase";
 import constants from "../../client-side-private-files.json";
-import ToggleSettingsModal from "./ToggleSettingsModal";
 import { connect } from "react-redux";
 
 class ToggleCard extends React.Component {
@@ -138,24 +137,7 @@ class ToggleCard extends React.Component {
               </div>
             </CardBody>
           </Card>
-          {/*<i
-            className="material-icons settings-button"
-            onClick={() =>
-              this.setState({ settingsOpen: !this.state.settingsOpen })
-            }
-          >
-            settings
-        </i>*/}
         </div>
-        {/*<ToggleSettingsModal
-          key={this.state.settingsOpen}
-          open={this.state.settingsOpen}
-          data={this.state.settings}
-          onClose={(settings) =>
-
-            this.setState({ settings: {...settings}, settingsOpen: false })
-          }
-        />*/}
       </div>
     );
   }
