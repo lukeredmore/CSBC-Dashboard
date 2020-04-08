@@ -8,24 +8,20 @@ const getCopyright = () => {
 }
 const menuItems = [
   {
-    title: "Home",
+    title: "Dashboard Home",
+    to: "/admin"
+  },
+  {
+    title: "Pass Toggle",
     to: "/"
   },
   {
-    title: "Services",
-    to: "#"
-  },
-  {
     title: "About",
-    to: "#"
+    to: "/About"
   },
   {
-    title: "Products",
-    to: "#"
-  },
-  {
-    title: "Blog",
-    to: "#"
+    title: "Help",
+    to: "/help"
   }
 ]
 

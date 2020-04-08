@@ -5,39 +5,53 @@ import {
   auth,
   googleProvider,
   getDataFromRef,
-  getCurrentUser
+  getCurrentUser,
+  sendAuthenticatedPostRequest
 } from "../../firebase";
 import {
   signInFailure,
-  signOutSuccess, signInSuccess,
+  signOutSuccess,
+  signInSuccess,
   signOutFailure
 } from "./user.actions";
+
+import constants from "../../client-side-private-files";
 
 export function* signIn() {
   try {
     const { user } = yield auth.signInWithPopup(googleProvider);
     const verifiedUser = yield createVerifiedUser(user);
     if (!verifiedUser) {
-       yield auth.signOut()
-       yield put(signInFailure({message: "User is not an admin"}))
+      yield auth.signOut();
+      yield put(signInFailure({ message: "User is not an admin" }));
     } else {
-        yield put(signInSuccess(verifiedUser))
+      yield put(signInSuccess(verifiedUser));
     }
-    
   } catch (err) {
+    console.log(err)
     yield put(signInFailure(err));
   }
 }
 
 export function* createVerifiedUser(user) {
+  let dashboardAccess = false
   if (!user || !user.emailVerified) return null;
   try {
     let allUsers = yield getDataFromRef("Users");
 
-    let shouldAllow = Object.values(allUsers).find(
-      e => user.email === e.email && e.dashboardAccess
-    );
+    let shouldAllow = Object.entries(allUsers).find(
+      ([key, val]) => user.email === val.email && val.toggleAccess
+    )
     if (!shouldAllow) return null;
+    if (shouldAllow[1].dashboardAccess) dashboardAccess = true
+    if (shouldAllow[0] !== user.uid) {
+      const url = constants.FIREBASE_CHANGE_USER_KEY_FUNCTION_URL;
+      
+      //Remove existing user
+      const postBody = { oldKey: shouldAllow[0], newKey: user.uid };
+      const response = yield sendAuthenticatedPostRequest(url, postBody);
+      console.log(response);
+    }
   } catch {
     return null;
   }
@@ -47,7 +61,8 @@ export function* createVerifiedUser(user) {
     email: user.email,
     displayName: user.displayName,
     photoURL: user.photoURL,
-    phoneNumber: user.phoneNumber
+    phoneNumber: user.phoneNumber,
+    dashboardAccess: dashboardAccess
   };
 }
 
@@ -64,7 +79,7 @@ export function* signOut() {
   }
 }
 export function* onSignOutStart() {
-    yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut)
+  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
 }
 
 export function* isUserAuthenticated() {
@@ -73,10 +88,10 @@ export function* isUserAuthenticated() {
     if (!userAuth) return;
     const verifiedUser = yield createVerifiedUser(userAuth);
     if (!verifiedUser) {
-       yield auth.signOut()
-       yield put(signInFailure({message: "User is not an admin"}))
+      yield auth.signOut();
+      yield put(signInFailure({ message: "User is not an admin" }));
     } else {
-        yield put(signInSuccess(verifiedUser))
+      yield put(signInSuccess(verifiedUser));
     }
   } catch (err) {
     yield put(signInFailure(err));
@@ -88,5 +103,9 @@ export function* onCheckUserSession() {
 }
 
 export function* userSagas() {
-  yield all([call(onSignInStart), call(onSignOutStart), call(onCheckUserSession)]);
+  yield all([
+    call(onSignInStart),
+    call(onSignOutStart),
+    call(onCheckUserSession)
+  ]);
 }

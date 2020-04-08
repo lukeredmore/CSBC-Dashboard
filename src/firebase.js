@@ -75,3 +75,28 @@ export const sendAuthenticatedRequest = async url => {
     };
   }
 };
+
+export const sendAuthenticatedPostRequest = async (url, data) => {
+  try {
+    const authToken = await auth.currentUser.getIdToken();
+    const config = {
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` },
+      method: "POST",
+      body: JSON.stringify(data)
+    };
+    const response = await fetch(url, config);
+    console.log(response)
+    const status = response.status;
+    const { message } = await response.json();
+    return { status, message };
+  } catch (err) {
+    return {
+      status: 500,
+      message: err,
+    };
+  }
+};
+
+export const verifyLoginStatus = () => {
+  return auth.currentUser
+}

@@ -55,7 +55,7 @@ class DefaultLayout extends React.Component {
             {items.map((item, i) => (
               <div
                 key={i}
-                onClick={() => this.props.history.push(item.to)}
+                onClick={() => this.props.history.push(`/admin${item.to}`)}
                 className={
                   "new-nav-item" +
                   (this.props.match.path.includes(item.to) ? " selected" : "")

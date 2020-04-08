@@ -8,7 +8,7 @@ import AddStudentModal from "../my-components/Passes/AddStudentModal.jsx"
 import BannerAlert from "../my-components/BannerAlert"
 import PlusButton from '../my-components/Passes/PlusButton'
 
-import { getContinuousDataFromRef } from "../firebase"
+import { getContinuousDataFromRef, sendAuthenticatedPostRequest } from "../firebase"
 import BatchStudentUploader from "../my-components/Passes/BatchStudentUploader"
 import OutstandingEmail from "../my-components/Passes/OutstandingEmail"
 
@@ -52,25 +52,18 @@ class PassesOverview extends React.Component {
     )
   }
 
-  addStudent = async student => {
-    const url =
-      privateFiles.FIREBASE_ADD_FUNCTION_URL +
-      "?name=" +
-      student.name +
-      "&studentIDNumber=" +
-      student.idNumber +
-      "&graduationYear=" +
-      student.graduationYear
-    const res = await fetch(url)
-    let body = await res.json()
-    console.log(body)
+  addStudent = async ({name, idNumber, graduationYear}) => {
+    const url = privateFiles.FIREBASE_ADD_STUDENT_FUNCTION_URL;
+    const postBody = { name, idNumber, graduationYear }
+    let response = await sendAuthenticatedPostRequest(url, postBody);
+    console.log(response)
     this.setState({
       currentlyAdding: null,
       alert: {
-        message: body.error ? body.error : body.message,
-        theme: body.error ? "danger" : "success"
+        message: response.status === 200 ? "User successfully added!" : "The user could not be added",
+        theme: response.status === 200 ? "success" : "danger"
       }
-    })
+    });
   }
 
   render() {
@@ -94,13 +87,13 @@ class PassesOverview extends React.Component {
             Use this page to view and manage all students using NFC-enabled
             passes. Click{" "}
             <a
-              href="https://csbcpasses.herokuapp.com"
+              href="/"
               rel="noopener noreferrer"
               target="_blank"
             >
               here
             </a>{" "}
-            to visit the site that the NFC readers use to sign students in and
+            to visit the page the NFC readers use to sign students in and
             out.
           </p>
           <Row>

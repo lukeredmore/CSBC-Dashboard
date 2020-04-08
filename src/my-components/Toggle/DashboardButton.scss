@@ -1,0 +1,39 @@
+.dashboard-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+
+  @media only screen and (max-width: 740px) {
+      bottom: 60px;
+      right: 50%;
+      transform: translateX(50%);
+  }
+
+  &.btn-primary {
+    border-color: white;
+    color: #154734;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 0, 0, 0.25);
+    font-size: 16px;
+    font-weight: 900;
+    font-family: "Montserrat";
+    &:hover {
+      border-color: #154734;
+      color: white;
+      background-color: #154734;
+    }
+    &:active {
+      border-color: white !important;
+      color: #154734 !important;
+      background-color: white !important;
+    }
+    &:focus {
+      border-color: white !important;
+      color: #154734 !important;
+      background-color: white !important;
+      outline: none !important;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 0, 0, 0.25);
+    }
+  }
+}

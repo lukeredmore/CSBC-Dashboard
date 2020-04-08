@@ -14,7 +14,7 @@
   .shadow-overlay {
     top: 0;
     position: fixed;
-    width: 200px;
+    width: 210px;
     height: 100vh;
     background-color: white;
     z-index: 1;
@@ -34,7 +34,7 @@
         "max(12px, calc(env(safe-area-inset-left)) - 20px)"
       );
     }
-    width: calc(200px + env(safe-area-inset-left));
+    width: calc(210px + env(safe-area-inset-left));
     height: 65px;
     @media only screen and (max-width: 600px) {
       padding-right: 4px;
@@ -90,7 +90,7 @@
           "max(10px, calc(env(safe-area-inset-left)) - 6px)"
         );
       }
-      width: calc(200px + env(safe-area-inset-left));
+      width: calc(210px + env(safe-area-inset-left));
       @media only screen and (max-width: 600px) {
         width: 100vw;
         padding-left: calc(50% - 95px);
@@ -99,11 +99,11 @@
       .wordmark {
         line-height: 40px;
         padding-left: 5px;
-        font-size: 17px;
-        font-weight: 500;
+        font-size: 16px;
+        font-weight: 800;
       }
     }
-    width: 200px;
+    width: 210px;
     height: calc(100vh - 65px);
     @media only screen and (max-width: 600px) {
       width: 100vw;
@@ -138,6 +138,7 @@
         line-height: 52px;
         transition: 300ms ease all;
         font-size: 0.85rem;
+        font-weight: 800;
         color: #3d5170;
         padding-left: 20px;
         @media only screen and (max-width: 600px) {
@@ -171,13 +172,13 @@
     min-height: 100vh;
     flex-direction: column;
     position: relative;
-    left: calc(200px + env(safe-area-inset-left));
+    left: calc(210px + env(safe-area-inset-left));
     top: 0px;
     .component {
       flex: 1;
       width: calc(100% - env(safe-area-inset-left));
     }
-    width: calc(100% - 200px);
+    width: calc(100% - 210px);
     @supports (padding: unquote("max(0px)")) {
       padding-right: unquote(
         "max(0px, calc(env(safe-area-inset-right) - 12px))"

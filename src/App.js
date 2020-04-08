@@ -1,8 +1,10 @@
 import React from "react"
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import { Switch } from 'react-router-dom'
 
-import routes from "./routes"
+import './App.scss'
+
+import { adminRoutes, routes } from "./routes";
 import withTracker from "./withTracker"
 
 import { connect } from "react-redux"
@@ -13,6 +15,7 @@ import "./styles/shards-dashboards.1.1.0.min.css"
 import LoginPage from './pages/LoginPage'
 import ErrorPage from './pages/ErrorPage'
 import { checkUserSession } from "./redux/user/user.actions"
+import { verifyLoginStatus } from "./firebase"
 
 class App extends React.Component {
 
@@ -24,29 +27,54 @@ class App extends React.Component {
     return (
       <Router basename={process.env.REACT_APP_BASENAME || ""}>
         <Switch>
-          {routes.map((route, index) => {
-            return (
-              <Route
-                key={index}
-                path={route.path}
-                exact={route.exact}
-                component={withTracker(props => 
-                  this.props.currentUser
-                  ? <route.layout {...props}>
-                      <route.component {...props} />
-                    </route.layout>
-                  : <LoginPage />
-                )}
-              />
-            )
-          })}
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              component={withTracker(props =>
+                this.props.currentUser && verifyLoginStatus() ? (
+
+                    <route.component {...props} />
+                ) : (
+                  <LoginPage />
+                )
+              )}
+            />
+          ))}
+
+          {adminRoutes.map((route, index) => (
+            <Route
+              key={index}
+              path={"/admin" + route.path}
+              exact={route.exact}
+              component={withTracker(props =>
+                this.props.currentUser &&
+                this.props.currentUser.dashboardAccess &&
+                verifyLoginStatus() ? (
+                  <route.layout {...props}>
+                    <route.component {...props} />
+                  </route.layout>
+                ) : this.props.currentUser && verifyLoginStatus ? (
+                  <Redirect to="/" />
+                ) : (
+                  <LoginPage />
+                )
+              )}
+            />
+          ))}
           <Route
             key={routes.length}
-            children={<ErrorPage code="404" message="The requested page was not found on our servers."/>}
+            children={
+              <ErrorPage
+                code="404"
+                message="The requested page was not found on our servers."
+              />
+            }
           />
         </Switch>
       </Router>
-    )
+    );
   }
 }
 

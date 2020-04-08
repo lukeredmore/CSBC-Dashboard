@@ -8,7 +8,10 @@ import privateFiles from "../../client-side-private-files.json"
 import ExpandableSearchField from "./ExpandableSearchField";
 import ButtonIcon from "./ButtonIcon"
 import StudentPassHeader from "./StudentPassHeader"
-import { sendAuthenticatedRequest } from "../../firebase"
+import {
+  sendAuthenticatedPostRequest,
+  sendAuthenticatedRequest
+} from "../../firebase";
 
 class StudentPassViewer extends React.Component {
   state = {
@@ -36,12 +39,10 @@ class StudentPassViewer extends React.Component {
 
   toggleCheckedItems = () => {
     this.state.checkedStudents.forEach(async e => {
-      const url =
-        privateFiles.FIREBASE_TOOGLE_FUNCTION_URL +
-        "?studentIDNumber=" +
-        e.id[0] +
-        "&location=Manual Override&forceSign=toggle"
-      let response = await sendAuthenticatedRequest(url);
+      let response = await sendAuthenticatedPostRequest(
+        privateFiles.FIREBASE_TOOGLE_FUNCTION_URL,
+        { id: e.id[0], location: "Manual Override", forceSign: "toggle" }
+      );
       console.log(response)
     })
     this.batchButtonCompletion()
@@ -54,10 +55,10 @@ class StudentPassViewer extends React.Component {
       let finishedCounter = 0
       this.state.checkedStudents.forEach(async e => {
         const url = `${privateFiles.FIREBASE_DELETE_FUNCTION_URL}?studentIDNumber=${e.id[0]}`
-        const res = await fetch(url)
-        let body = await res.json()
+        const res = await sendAuthenticatedRequest(url)
+        console.log(res)
         finishedCounter++
-        if (body.error) studentsWithErrors.push(e.name)
+        if (res.status !== 200) studentsWithErrors.push(e.name)
         if (finishedCounter === this.state.checkedStudents.length) {
           const alertMessage = studentsWithErrors.length > 0
               ? `The following students failed to delete: ${studentsWithErrors.join(", ")}`

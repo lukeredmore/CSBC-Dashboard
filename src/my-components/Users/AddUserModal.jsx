@@ -11,8 +11,9 @@ import {
   FormCheckbox,
   FormSelect
 } from "shards-react"
-import { writeToRef, pushToRef, removeAtRef } from "../../firebase"
+import { sendAuthenticatedPostRequest } from "../../firebase"
 import { connect } from "react-redux"
+import constants from '../../client-side-private-files.json'
 
 class AddUserModal extends React.Component {
   state = {
@@ -23,21 +24,21 @@ class AddUserModal extends React.Component {
   componentDidMount() {
         if (!this.props.data) return
         const data = Object.entries(this.props.data)
+        console.log(data[0][0]);
         this.setState({ data: data[0][1], key: data[0][0]})
   }
 
   discardChangesAndClose = () => {
-    this.props.onClose()
+    this.props.onClose() 
     this.setState({ data: null, key: null })
   }
   saveChangesAndClose = async e => {
     e.preventDefault()
-    if (this.state.key && this.state.key !== "null") {
-      await writeToRef("Users/" + this.state.key, this.state.data);
-    } else {
-      await pushToRef("Users", this.state.data);
-    }
-    this.props.onClose()
+    this.props.onClose();
+    const statusMessage = (await this.updateUser(this.state.key, this.state.data))
+      ? "User was stored successfully!"
+      : "An error occurred. The user could not be updated.";
+    window.alert(statusMessage);
     this.setState({ data: null, key: null })
   }
   handleChange = event => {
@@ -53,6 +54,13 @@ class AddUserModal extends React.Component {
       this.setState({ data: newData })
   }
   
+  updateUser = async (key, data) => {
+    const url = constants.FIREBASE_ADD_OR_MODIFY_USERS_FUNCTION_URL;
+    const postBody = { key, data };
+    const response = await sendAuthenticatedPostRequest(url, postBody);
+    console.log(response);
+    return response.status === 200
+  }
 
   render() {
     if (this.state.data) {
@@ -129,7 +137,8 @@ class AddUserModal extends React.Component {
               </div>
             </ModalBody>
             <ModalFooter style={{ position: "relative" }}>
-              {this.props.user.email !== this.state.data.email ? (
+              {this.props.user.email !== this.state.data.email &&
+              this.state.key && this.state.key !== '' && this.state.key !== 'null' ? (
                 <Button
                   theme="danger"
                   style={{ position: "absolute", left: "26px", top: "15px" }}
@@ -139,12 +148,15 @@ class AddUserModal extends React.Component {
                         "Are you sure you want to delete this user? This cannot be undone."
                       )
                     ) {
-                      await removeAtRef("Users/" + this.state.key);
-                      alert(
-                        "User successfully deleted. They will no longer be able to use any administrative features."
-                      );
                       this.props.onClose();
-                      this.setState({ data: null, key: null });
+                      const statusMessage = (await this.updateUser(
+                        this.state.key,
+                        null
+                      ))
+                        ? "User successfully deleted. They will no longer be able to use any administrative features."
+                        : "An error occured and the user was not deleted";
+                      window.alert(statusMessage);
+                      this.setState({ data: null, email: null });
                     }
                   }}
                 >

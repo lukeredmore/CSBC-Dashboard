@@ -16,13 +16,14 @@ import PassesOverview from "./pages/PassesOverview";
 import UsersPage from "./pages/UsersPage";
 import Todo from "./pages/Todo";
 
+import TogglePage from './pages/TogglePage'
 
-export default [
+export const adminRoutes = [
   {
     path: "/",
     exact: true,
     layout: DefaultLayout,
-    component: () => <Redirect to="/blog-overview" />
+    component: () => <Redirect to="/admin/blog-overview" />
   },
   {
     path: "/blog-overview",
@@ -83,5 +84,13 @@ export default [
     exact: true,
     layout: DefaultLayout,
     component: Todo
+  }
+];
+
+export const routes = [
+  {
+    path: "/",
+    exact: true,
+    component: TogglePage
   }
 ];

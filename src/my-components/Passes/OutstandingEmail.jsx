@@ -65,7 +65,7 @@ class OutstandingEmail extends React.Component {
                 <MinimalistInputField
                   type="email"
                   name="emailToAdd"
-                  autocomplete="off"
+                  autoComplete="off"
                   required
                   value={this.state.emailToAdd}
                   onChange={this.handleChange}
