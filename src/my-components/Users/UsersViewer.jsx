@@ -15,10 +15,14 @@ class UsersViewer extends React.Component {
     searchValue: ""
   }
 
+  unsubscribe = null
   componentDidMount() {
-    getContinuousDataFromRef("Users", arr => {
+    this.unsubcribe = getContinuousDataFromRef("Users", arr => {
         this.setState({ users: Object.entries(arr)})
     })
+  }
+  componentWillUnmount() {
+    this.unsubcribe = null
   }
 
   handleChange = e => {

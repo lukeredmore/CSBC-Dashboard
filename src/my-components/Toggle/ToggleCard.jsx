@@ -22,15 +22,48 @@ class ToggleCard extends React.Component {
   }
 
   focus = () => {
-    if (!this.state.editingLocation) this.idInput.current.focus();
+    if (this.idInput.current &&
+      !this.state.editingLocation &&
+      document.activeElement !== this.idInput.current
+    ) {
+      this.idInput.current.focus();
+    }
   };
+
+  updateLocation = async (e) => {
+    if (e) e.preventDefault()
+    if (this.state.location && this.state.location !== "") {
+      if (this.state.editingLocation)
+        await writeToRef(
+          "Users/" + this.props.id + "/toggleLocation",
+          this.state.location
+        );
+      else
+        setTimeout(
+          () =>
+            this.setState({
+              editingLocation: false
+            }),
+          30000
+        );
+      this.setState({
+        editingLocation: !this.state.editingLocation
+      });
+    } else {
+      alert("Please enter a location");
+    }
+  };
+
+  componentWilUnmount() {
+    window.removeEventListener("focus", this.focus);
+  }
 
   componentDidUpdate() {
     this.focus();
   }
   async componentDidMount() {
-    console.log(this.props.uid);
     this.focus();
+    window.addEventListener("focus", this.focus);
     let location = await getDataFromRef(
       "Users/" + this.props.id + "/toggleLocation"
     );
@@ -54,13 +87,16 @@ class ToggleCard extends React.Component {
     this.setState({ [name]: this.validateValue(value) }, async () => {
       const { id } = this.state;
       if (id.length === 10) {
-        console.log("Location is " + this.state.location);
+        this.setState({ id: "" });
         let response = await sendAuthenticatedPostRequest(
           constants.FIREBASE_TOOGLE_FUNCTION_URL,
-          { id, location: this.state.location, forceSign: "toggle" }
+          {
+            id,
+            location: this.state.location,
+            forceSign: "toggle" /*REMOVE FORCESIGN WHEN LIVE*/
+          }
         );
         console.log(response);
-        this.setState({ id: "" });
       }
     });
   };
@@ -80,7 +116,11 @@ class ToggleCard extends React.Component {
 
   render() {
     return (
-      <div className="toggle-card-container" onClick={this.focus}>
+      <div
+        className="toggle-card-container"
+        onClick={this.focus}
+        onMouseMove={this.focus}
+      >
         <div className="toggle-card">
           <Card>
             <CardBody className="pt-3 pb-3">
@@ -96,16 +136,18 @@ class ToggleCard extends React.Component {
               <div className="mt-2 status-text">
                 Scan an ID to sign in or out
               </div>
-              <div className='footer'>
+              <div className="footer">
                 <span className="location-container">
                   {this.state.editingLocation ? (
-                    <input
-                      className="form-control location-editor"
-                      name="location"
-                      autoComplete="off"
-                      value={this.state.location}
-                      onChange={this.handleLocationChange}
-                    />
+                    <form onSubmit={this.updateLocation}>
+                      <input
+                        className="form-control location-editor"
+                        name="location"
+                        autoComplete="off"
+                        value={this.state.location}
+                        onChange={this.handleLocationChange}
+                      />
+                    </form>
                   ) : (
                     <span className="location-displayer">
                       {this.state.location}
@@ -113,23 +155,7 @@ class ToggleCard extends React.Component {
                   )}
                   <i
                     className="material-icons edit-location-button"
-                    onClick={async () => {
-                      if (this.state.location && this.state.location !== "") {
-                        if (this.state.editingLocation)
-                          await writeToRef(
-                            "Users/" + this.props.id + "/toggleLocation",
-                            this.state.location
-                          )
-                          else setTimeout(() => this.setState({
-                          editingLocation: false
-                        }), 30000)
-                        this.setState({
-                          editingLocation: !this.state.editingLocation
-                        });
-                      } else {
-                        alert("Please enter a location");
-                      }
-                    }}
+                    onClick={this.updateLocation}
                   >
                     {this.state.editingLocation ? "check_circle" : "edit"}
                   </i>

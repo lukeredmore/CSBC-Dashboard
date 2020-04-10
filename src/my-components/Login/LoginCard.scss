@@ -1,0 +1,35 @@
+.login-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateX(-50%) translateY(-65%);
+  -webkit-transform: translate(-50%, -65%);
+  transform: translate(-50%, -65%);
+  width: 500px;
+  @media only screen and (max-width: 550px) {
+    width: 90%;
+  }
+  .image-container {
+    text-align: center;
+    position: relative;
+    top: 40px;
+    z-index: 100;
+    .logo-image {
+      width: 120px;
+      -webkit-filter: drop-shadow(5px 5px 10px #888888);
+      filter: drop-shadow(5px 5px 10px #888888);
+    }
+  }
+
+  .card {
+    padding: 50px 16px 16px;
+    text-align: center;
+
+    p {
+      margin: 0px;
+    }
+    button {
+      margin: 16px 0px;
+    }
+  }
+}

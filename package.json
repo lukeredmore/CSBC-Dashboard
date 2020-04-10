@@ -1,5 +1,5 @@
 {
-  "name": "shards-dashboard-lite-react",
+  "name": "csbc-dashboard",
   "version": "1.0.0",
   "private": true,
   "homepage": "./",
@@ -10,7 +10,7 @@
     "cross-env": "^5.2.0",
     "dateformat": "^3.0.3",
     "dns": "^0.2.2",
-    "firebase": "^7.9.1",
+    "firebase": "^7.14.0",
     "firebase-auth": "^0.1.2",
     "http": "0.0.0",
     "http2": "^3.3.7",
@@ -24,6 +24,7 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "react-slidedown": "^2.4.5",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",

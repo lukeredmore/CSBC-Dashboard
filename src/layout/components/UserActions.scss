@@ -1,15 +1,15 @@
 .user-actions {
-    display: inline-block;
-    position: relative;
-    
-    .user-dropdown-toggle {
-        cursor: pointer;
-
-        .user-dropdown-image {
-            height: 45px;
-        }
-
-        @media screen and (max-width: 600px) {
+  user-select: none;
+  display: inline-block;
+  position: relative;
+  width: 190px;
+  .user-dropdown-toggle {
+    cursor: pointer;
+    padding: 9px;
+    img {
+      width: 45px;
+    }
+    @media screen and (max-width: 600px) {
                 .display-name {
                     display: none;
                 }
@@ -17,7 +17,42 @@
                     display: none;
                 }
             }
+  }
+  .dropdown-option-shadow {
+    position: absolute;
+    background-color: white;
+    border-radius: 8px;
+    z-index: -1;
+    left: 25px;
+    width: 80%;
+    height: 94px;
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.11),
+      0 3px 10px rgba(0, 0, 0, 0.05), 0 2px 3px rgba(0, 0, 0, 0.06);
+    transition: 300ms ease all;
+    &.hidden {
+      height: 0px;
     }
+  }
+  .react-slidedown {
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+  }
+  .dropdown-option-container {
+    position: relative;
+    left: 25px;
+    width: 80%;
+    .dropdown-option {
+      text-align: left;
+      padding: 4px 12px;
+      margin: 2px 0;
+      transition: 300ms ease all;
+      color: #222222;
+      cursor: pointer;
+      &:hover {
+        background-color: #eaeaea;
+      }
+    }
+  }
 }
 .user-actions-no-user {
     cursor: pointer;

@@ -43,7 +43,7 @@ class AdminLayout extends React.Component {
             src={require("../assets/lettermark.png")}
             alt="CSBC Dashboard"
           />
-          <UserActions />
+          <UserActions history={this.props.history}/>
         </div>
         <div
           className={

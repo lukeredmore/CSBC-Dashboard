@@ -4,6 +4,9 @@
   width: 100vw;
   text-align: center;
   background-color: #d0dad6;
+  &:focus {
+    background-color: green;
+  }
   user-select: none;
   .toggle-card {
     color: white;
@@ -19,7 +22,7 @@
         border: none;
         user-select: none;
         background-color: #b4daca;
-        caret-color: transparent;
+        // caret-color: transparent;
         &:focus {
           box-shadow: none;
           border-color: none;
@@ -32,36 +35,34 @@
         position: relative;
         height: 22px;
         margin-top: 16px;
-.location-container {
-        position: absolute;
-        left: 0;
-        .edit-location-button {
-          cursor: pointer;
+        .location-container {
           position: absolute;
-          right: 0;
-          font-size: 18px;
-          top: 50%;
-          transform: translate(140%, -50%);
-        }
-        .location-label {
-          margin-right: 5px;
-        }
-        .location-displayer:not(.form-control) {
-          background-color: transparent;
-          border: none;
-          color: white;
-          font-style: italic;
-          
-        }
+          left: 0;
+          .edit-location-button {
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            font-size: 18px;
+            top: 50%;
+            transform: translate(140%, -50%);
+          }
+          .location-label {
+            margin-right: 5px;
+          }
+          .location-displayer:not(.form-control) {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-style: italic;
+          }
 
-        .location-editor {
-          width: 100%;
-          display: inline-block;
-          padding: 2px 4px;
+          .location-editor {
+            width: 100%;
+            display: inline-block;
+            padding: 2px 4px;
+          }
         }
       }
-      }
-      
     }
     position: absolute;
     top: 48%;

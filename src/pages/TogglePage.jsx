@@ -7,15 +7,14 @@ import CopyrightText from '../my-components/Toggle/CopyrightText'
 
 import { connect } from "react-redux";
 
-const TogglePage = (props) => {
-  console.log(props)
+const TogglePage = ({history, dashboardAccess}) => {
   return (
     <div>
       <ToggleCard />
       <LogoutButton />
       <CopyrightText />
-      {props.dashboardAccess ? (
-        <DashboardButton onClick={() => props.history.push("/admin")} />
+      {dashboardAccess ? (
+        <DashboardButton onClick={() => history.push("/admin")} />
       ) : null}
     </div>
   );

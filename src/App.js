@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/shards-dashboards.1.1.0.min.css";
 
+import LoadingSymbol from "./my-components/Login/LoadingSymbol";
 import LoginPage from "./pages/LoginPage";
 import ErrorPage from "./pages/ErrorPage";
 import { checkUserSession } from "./redux/user/user.actions";
@@ -23,7 +24,9 @@ class App extends React.Component {
   }
 
   render() {
-    return (
+    return this.props.isFetching ? (
+      <LoadingSymbol />
+    ) : (
       <Router basename={process.env.REACT_APP_BASENAME || ""}>
         <Switch>
           {routes.map((route, index) => (
@@ -32,7 +35,8 @@ class App extends React.Component {
               path={route.path}
               exact={route.exact}
               component={withTracker(props =>
-                (this.props.currentUser && verifyLoginStatus()) || !route.requiresLogin ? (
+                (this.props.currentUser && verifyLoginStatus()) ||
+                !route.requiresLogin ? (
                   route.layout ? (
                     <route.layout {...props}>
                       <route.component {...props} />
@@ -69,12 +73,13 @@ class App extends React.Component {
           ))}
           <Route
             key={routes.length}
-            children={
+            component={withTracker(props => (
               <ErrorPage
                 code="404"
                 message="The requested page was not found on our servers."
+                {...props}
               />
-            }
+            ))}
           />
         </Switch>
       </Router>
@@ -83,7 +88,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+  currentUser: user.currentUser,
+  isFetching: user.isFetching
 });
 
 const mapDispatchToProps = dispatch => ({

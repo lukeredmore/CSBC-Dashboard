@@ -85,7 +85,10 @@ export function* onSignOutStart() {
 export function* isUserAuthenticated() {
   try {
     const userAuth = yield getCurrentUser();
-    if (!userAuth) return;
+    if (!userAuth) {
+      yield put(signInFailure({ message: "No user is signed in" }));
+      return
+    }
     const verifiedUser = yield createVerifiedUser(userAuth);
     if (!verifiedUser) {
       yield auth.signOut();

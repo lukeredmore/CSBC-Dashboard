@@ -85,7 +85,6 @@ export const sendAuthenticatedPostRequest = async (url, data) => {
       body: JSON.stringify(data)
     };
     const response = await fetch(url, config);
-    console.log(response)
     const status = response.status;
     const { message } = await response.json();
     return { status, message };
