@@ -1,56 +1,26 @@
 import React from "react";
 import { Card, CardBody } from "shards-react";
+import { isMobileOnly, isIE } from "react-device-detect";
 
 import "./ToggleCard.scss";
-import {
-  sendAuthenticatedPostRequest,
-  getDataFromRef,
-  writeToRef
-} from "../../firebase";
+import { sendAuthenticatedPostRequest } from "../../firebase";
 import constants from "../../client-side-private-files.json";
-import { connect } from "react-redux";
 
 class ToggleCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
-      location: "",
-      editingLocation: false
+      id: ""
     };
     this.idInput = React.createRef();
   }
 
   focus = () => {
-    if (this.idInput.current &&
-      !this.state.editingLocation &&
+    if (
+      this.idInput.current &&
       document.activeElement !== this.idInput.current
     ) {
       this.idInput.current.focus();
-    }
-  };
-
-  updateLocation = async (e) => {
-    if (e) e.preventDefault()
-    if (this.state.location && this.state.location !== "") {
-      if (this.state.editingLocation)
-        await writeToRef(
-          "Users/" + this.props.id + "/toggleLocation",
-          this.state.location
-        );
-      else
-        setTimeout(
-          () =>
-            this.setState({
-              editingLocation: false
-            }),
-          30000
-        );
-      this.setState({
-        editingLocation: !this.state.editingLocation
-      });
-    } else {
-      alert("Please enter a location");
     }
   };
 
@@ -61,25 +31,9 @@ class ToggleCard extends React.Component {
   componentDidUpdate() {
     this.focus();
   }
-  async componentDidMount() {
+  componentDidMount() {
     this.focus();
     window.addEventListener("focus", this.focus);
-    let location = await getDataFromRef(
-      "Users/" + this.props.id + "/toggleLocation"
-    );
-    if (location) {
-      this.setState({ location });
-    } else {
-      let newLocation;
-      do {
-        newLocation = prompt("Please enter a location");
-      } while (newLocation == null || newLocation === "");
-      await writeToRef(
-        "Users/" + this.props.id + "/toggleLocation",
-        newLocation
-      );
-      this.setState({ location: newLocation });
-    }
   }
 
   handleIDChange = e => {
@@ -92,10 +46,11 @@ class ToggleCard extends React.Component {
           constants.FIREBASE_TOOGLE_FUNCTION_URL,
           {
             id,
-            location: this.state.location,
+            location: this.props.location,
             forceSign: "toggle" /*REMOVE FORCESIGN WHEN LIVE*/
           }
         );
+        this.props.onResponseReceived(response);
         console.log(response);
       }
     });
@@ -121,56 +76,37 @@ class ToggleCard extends React.Component {
         onClick={this.focus}
         onMouseMove={this.focus}
       >
-        <div className="toggle-card">
-          <Card>
-            <CardBody className="pt-3 pb-3">
-              <div className="title mb-3">Student ID</div>
-              <input
-                className="form-control scan-entry-input"
-                name="id"
-                autoComplete="off"
-                ref={this.idInput}
-                value={this.state.id}
-                onChange={this.handleIDChange}
-              />
-              <div className="mt-2 status-text">
-                Scan an ID to sign in or out
-              </div>
-              <div className="footer">
-                <span className="location-container">
-                  {this.state.editingLocation ? (
-                    <form onSubmit={this.updateLocation}>
-                      <input
-                        className="form-control location-editor"
-                        name="location"
-                        autoComplete="off"
-                        value={this.state.location}
-                        onChange={this.handleLocationChange}
-                      />
-                    </form>
-                  ) : (
-                    <span className="location-displayer">
-                      {this.state.location}
-                    </span>
-                  )}
-                  <i
-                    className="material-icons edit-location-button"
-                    onClick={this.updateLocation}
-                  >
-                    {this.state.editingLocation ? "check_circle" : "edit"}
-                  </i>
-                </span>
-              </div>
-            </CardBody>
-          </Card>
+        <div className="center-container">
+          {isMobileOnly ? (
+            <div className="invalid-device">
+              To use this system, this device must support an external keyboard.
+            </div>
+          ) : isIE ? (
+            <div className="invalid-device">
+              To use this system, please use Google Chrome or another supported browser.
+            </div>
+          ) : (
+            <Card>
+              <CardBody className="pt-3 pb-3">
+                <div className="title mb-3">Student ID</div>
+                <input
+                  className="form-control scan-entry-input"
+                  name="id"
+                  autoComplete="off"
+                  ref={this.idInput}
+                  value={this.state.id}
+                  onChange={this.handleIDChange}
+                />
+                <div className="mt-2 status-text">
+                  Scan an ID to sign in or out
+                </div>
+              </CardBody>
+            </Card>
+          )}
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  id: state.user.currentUser.id
-});
-
-export default connect(mapStateToProps)(ToggleCard);
+export default ToggleCard;

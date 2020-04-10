@@ -3,6 +3,7 @@ import "./AdminLayout.scss";
 
 import UserActions from "./components/UserActions";
 import MainFooter from './components/MainFooter'
+import Logo from "../assets/lettermark.png"
 
 import items from "./sidebar-nav-items.json";
 
@@ -38,12 +39,8 @@ class AdminLayout extends React.Component {
       <div className="admin-layout">
         <div className="user-container border-bottom">
           <i className="fa fa-bars show-menu" onClick={this.toggleShown} />
-          <img
-            className="header-lettermark"
-            src={require("../assets/lettermark.png")}
-            alt="CSBC Dashboard"
-          />
-          <UserActions history={this.props.history}/>
+          <img className="header-lettermark" src={Logo} alt="CSBC Dashboard" />
+          <UserActions history={this.props.history} />
         </div>
         <div
           className={
@@ -70,7 +67,7 @@ class AdminLayout extends React.Component {
             <img
               className="d-inline-block align-top mr-1"
               style={{ maxWidth: "35px" }}
-              src={require("../assets/lettermark.png")}
+              src={Logo}
               alt="CSBC Dashboard"
             />
             <span className="wordmark">CSBC Dashboard</span>
