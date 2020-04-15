@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Row, Col } from "shards-react";
 
-import PageTitle from "../components/common/PageTitle";
+import PageTitle from "../my-components/PageTitle";
 
 import SchoolForm from '../my-components/SchoolForm'
 
-const CSBCDashboard = () => (
+const SchoolPage = () => (
   <Container fluid className="main-content-container px-4 pb-4">
     {/* Page Header */}
     <Row className="page-header py-4">
@@ -34,4 +34,4 @@ const CSBCDashboard = () => (
   </Container>
 )
 
-export default CSBCDashboard
+export default SchoolPage;

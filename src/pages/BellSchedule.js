@@ -1,7 +1,7 @@
 import React from "react"
 import { Container, Row, Col, Alert } from "shards-react"
 
-import PageTitle from "../components/common/PageTitle"
+import PageTitle from "../my-components/PageTitle"
 
 import SchedulePreview from "../my-components/Schedule/SchedulePreview"
 import AddSchedulePreview from "../my-components/Schedule/AddSchedulePreview"

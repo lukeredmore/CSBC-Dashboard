@@ -5,12 +5,9 @@ import { Redirect } from "react-router-dom";
 import AdminLayout from "./layout/AdminLayout";
 
 // Route Views
-import BlogOverview from "./pages/BlogOverview";
 import AddNewPost from "./pages/AddNewPost";
 import ComponentsOverview from "./pages/ComponentsOverview";
-import Tables from "./pages/Tables";
-import BlogPosts from "./pages/BlogPosts";
-import CSBCDashboard from "./pages/CSBCDashboard";
+import SchoolPage from "./pages/SchoolPage";
 import BellSchedule from "./pages/BellSchedule";
 import PassesOverview from "./pages/PassesOverview";
 import UsersPage from "./pages/UsersPage";
@@ -24,13 +21,7 @@ export const adminRoutes = [
     path: "/",
     exact: true,
     layout: AdminLayout,
-    component: () => <Redirect to="/admin/blog-overview" />
-  },
-  {
-    path: "/blog-overview",
-    exact: true,
-    layout: AdminLayout,
-    component: BlogOverview
+    component: () => <Redirect to="/admin/schools" />
   },
   {
     path: "/add-new-post",
@@ -45,22 +36,10 @@ export const adminRoutes = [
     component: ComponentsOverview
   },
   {
-    path: "/tables",
+    path: "/schools",
     exact: true,
     layout: AdminLayout,
-    component: Tables
-  },
-  {
-    path: "/blog-posts",
-    exact: true,
-    layout: AdminLayout,
-    component: BlogPosts
-  },
-  {
-    path: "/dashboard",
-    exact: true,
-    layout: AdminLayout,
-    component: CSBCDashboard
+    component: SchoolPage
   },
   {
     path: "/schedule",

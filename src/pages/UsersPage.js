@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "shards-react";
 
-import PageTitle from "../components/common/PageTitle";
+import PageTitle from "../my-components/PageTitle";
 import UsersViewer from "../my-components/Users/UsersViewer";
 
 const UsersPage = () => (

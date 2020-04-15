@@ -1,7 +1,7 @@
 import React from "react"
 import { Container, Row, Col } from "shards-react"
 
-import PageTitle from "../components/common/PageTitle"
+import PageTitle from "../my-components/PageTitle"
 import privateFiles from "../client-side-private-files.json"
 import StudentPassesViewer from "../my-components/Passes/StudentPassesViewer"
 import AddStudentModal from "../my-components/Passes/AddStudentModal.jsx"

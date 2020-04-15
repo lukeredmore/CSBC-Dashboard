@@ -11,7 +11,7 @@ import {
   Alert
 } from "shards-react";
 
-import PageTitle from "../components/common/PageTitle";
+import PageTitle from "../my-components/PageTitle";
 import Colors from "../components/components-overview/Colors";
 import Checkboxes from "../components/components-overview/Checkboxes";
 import RadioButtons from "../components/components-overview/RadioButtons";

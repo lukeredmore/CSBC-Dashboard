@@ -3,7 +3,8 @@ node_modules
 npm-debug.log
 .DS_Store
 /*.env
-src/styles/shards-dashboards.1.1.0.min.css
+src/shards-dashboards.1.1.0
+src/shards-dashboards.1.1.0.css
 src/client-side-private-files.json
 src/client-side-private-files
 build

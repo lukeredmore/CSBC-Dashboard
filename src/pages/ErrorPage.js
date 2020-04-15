@@ -1,12 +1,37 @@
 import React from "react";
-import { Container, Button } from "shards-react";
+import { Button } from "shards-react";
+import Footer from '../layout/components/MainFooter'
 
 const ErrorPage = ({ code, title, message, history }) => (
-  <Container fluid className="main-content-container px-4 pb-4">
-    <div className="error">
-      <div className="error__content">
-        <h2>{code ? code : "500"}</h2>
-        <h3>{title ? title : "Something went wrong!"}</h3>
+  <div>
+    <div
+      style={{
+        position: "absolute",
+        top: "47%",
+        left: "50%",
+        transform: "translate(-50%, -50%)"
+      }}
+    >
+      <div style={{ textAlign: "center" }}>
+        <h2
+          style={{
+            color: "#cacedb",
+            fontWeight: "700",
+            fontSize: "3.75rem",
+            marginBottom: "1.5625rem"
+          }}
+        >
+          {code ? code : "500"}
+        </h2>
+        <h3
+          style={{
+            fontWeight: "500",
+            fontSize: "2.1875rem",
+            marginBottom: "0.625rem"
+          }}
+        >
+          {title ? title : "Something went wrong!"}
+        </h3>
         <p>
           {message
             ? message
@@ -17,7 +42,10 @@ const ErrorPage = ({ code, title, message, history }) => (
         </Button>
       </div>
     </div>
-  </Container>
+    <div style={{position: 'absolute', bottom: '0', width: '100%'}}>
+      <Footer />
+    </div>
+  </div>
 );
 
 export default ErrorPage;

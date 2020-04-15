@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "shards-react";
 
-import PageTitle from "../components/common/PageTitle";
+import PageTitle from "../my-components/PageTitle";
 import Editor from "../components/add-new-post/Editor";
 import SidebarActions from "../components/add-new-post/SidebarActions";
 import SidebarCategories from "../components/add-new-post/SidebarCategories";

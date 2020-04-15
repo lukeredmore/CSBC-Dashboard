@@ -1,16 +1,5 @@
 [
     {
-      "title": "Blog Dashboard",
-      "to": "/blog-overview",
-      "icon": "edit",
-      "htmlAfter": ""
-    },
-    {
-      "title": "Blog Posts",
-      "icon": "vertical_split",
-      "to": "/blog-posts"
-    },
-    {
       "title": "Add New Post",
       "icon": "note_add",
       "to": "/add-new-post"
@@ -21,14 +10,9 @@
       "to": "/components-overview"
     },
     {
-      "title": "Tables",
-      "icon": "table_chart",
-      "to": "/tables"
-    },
-    {
       "title": "School Information",
       "icon": "school",
-      "to": "/dashboard"
+      "to": "/schools"
     },
     {
       "title": "Bell Schedule",
