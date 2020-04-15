@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Switch } from "react-router-dom";
 
-import "./App.scss";
 
 import { adminRoutes, routes } from "./routes";
 import withTracker from "./withTracker";
@@ -10,7 +9,7 @@ import withTracker from "./withTracker";
 import { connect } from "react-redux";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles/shards-dashboards.1.1.0.min.css";
+import "./App.scss";
 
 import LoadingSymbol from "./my-components/Login/LoadingSymbol";
 import LoginPage from "./pages/LoginPage";

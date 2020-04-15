@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardBody } from "shards-react";
-import { isMobileOnly, isIE } from "react-device-detect";
+import { isMobile, isIE, isSafari } from "react-device-detect";
 
 import "./ToggleCard.scss";
 import { sendAuthenticatedPostRequest } from "../../firebase";
@@ -77,11 +77,11 @@ class ToggleCard extends React.Component {
         onMouseMove={this.focus}
       >
         <div className="center-container">
-          {isMobileOnly ? (
+          {isMobile ? (
             <div className="invalid-device">
               To use this system, this device must support an external keyboard.
             </div>
-          ) : isIE ? (
+          ) : isIE || isSafari ? (
             <div className="invalid-device">
               To use this system, please use Google Chrome or another supported browser.
             </div>

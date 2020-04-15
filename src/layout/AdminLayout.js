@@ -40,7 +40,9 @@ class AdminLayout extends React.Component {
         <div className="user-container border-bottom">
           <i className="fa fa-bars show-menu" onClick={this.toggleShown} />
           <img className="header-lettermark" src={Logo} alt="CSBC Dashboard" />
-          <UserActions history={this.props.history} />
+          <div className="user-actions-container">
+            <UserActions history={this.props.history} />
+          </div>
         </div>
         <div
           className={

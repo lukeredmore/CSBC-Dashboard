@@ -1,74 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import { signInStart, signOutStart } from "../../redux/user/user.actions";
-import { SlideDown} from 'react-slidedown'
+import { SlideDown } from "react-slidedown";
 import "react-slidedown/lib/slidedown.css";
 
 import "./UserActions.scss";
 
-class UserActions extends React.Component {
-  state = {
-    visible: false
-  };
+const UserActions = ({ currentUser, history, signInStart, signOutStart }) => {
+  const [visible, setVisible] = useState(false);
 
-  toggle = () => {
-    this.setState({
-      visible: !this.state.visible
-    });
-  };
-
-  render() {
-    if (this.props.currentUser) {
-      const { displayName, photoURL } = this.props.currentUser;
-      return (
-        <div className="user-actions" onClick={this.toggle}>
-          <div className="user-dropdown-toggle">
-            <img
-              className="user-avatar rounded-circle mr-2 user-dropdown-image"
-              src={photoURL}
-              alt="User Avatar"
-            />
-            <span className="display-name">{displayName}</span>
-            <i className="material-icons">keyboard_arrow_down</i>
-          </div>
-          <div
-            className={`dropdown-option-shadow ${
-              this.state.visible ? "" : "hidden"
-            }`}
+  if (currentUser) {
+    const { displayName, photoURL } = currentUser;
+    return (
+      <div className="user-actions" onClick={() => setVisible(!visible)}>
+        <div className="user-dropdown-toggle">
+          <img
+            className="user-avatar rounded-circle mr-2 user-dropdown-image"
+            src={photoURL}
+            alt="User Avatar"
           />
-          <SlideDown className={"my-dropdown-slidedown"}>
-            {this.state.visible ? (
+          <span className="display-name">{displayName}</span>
+          <i className="material-icons">keyboard_arrow_down</i>
+        </div>
+        <div className={`dropdown-option-shadow ${visible ? "" : "hidden"}`} />
+        <SlideDown className="my-dropdown-slidedown">
+          {visible ? (
               <div className="dropdown-option-container">
                 <div
                   className="dropdown-option"
-                  onClick={() => this.props.history.push("/profile")}
+                  onClick={() => history.push("/profile")}
                 >
                   <i className="material-icons">person</i> Profile
                 </div>
                 <div
                   className="dropdown-option"
-                  onClick={() => this.props.history.push("/settings")}
+                  onClick={() => history.push("/settings")}
                 >
                   <i className="material-icons">settings</i> Settings
                 </div>
                 <div
                   className="dropdown-option border-top"
-                  onClick={this.props.signOutStart}
+                  onClick={signOutStart}
                 >
                   <i className="material-icons text-danger">exit_to_app</i>{" "}
                   Logout
                 </div>
               </div>
-            ) : null}
-          </SlideDown>
-        </div>
-      );
-    } else {
-      return <span className="user-actions-no-user" onClick={this.props.signInStart}>Sign In</span>
-    }
+          ) : null}
+        </SlideDown>
+      </div>
+    );
+  } else {
+    return (
+      <span className="user-actions-no-user" onClick={signInStart}>
+        Sign In
+      </span>
+    );
   }
-}
+};
 
 const mapStateToProps = ({ user }) => ({
   currentUser: user.currentUser
@@ -76,6 +66,6 @@ const mapStateToProps = ({ user }) => ({
 const mapDispatchToProps = dispatch => ({
   signInStart: () => dispatch(signInStart()),
   signOutStart: () => dispatch(signOutStart())
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserActions);

@@ -62,6 +62,23 @@
         display: inline;
       }
     }
+    .user-actions-container {
+      width: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      transform: translateX(-50%);
+      @media only screen and (max-width: 600px) and (min-width: 225px) {
+        display: inline-block;
+        right: 12px;
+        left: auto;
+        position: absolute;
+        transform: translate(0, 0);
+      }
+    }
     .show-menu {
       display: none;
       cursor: pointer;
@@ -83,7 +100,7 @@
       background-color: white;
       position: absolute;
       bottom: 0px;
-      padding: 10px;
+      padding: 10px 0;
 
       @supports (padding: unquote("max(0px)")) {
         padding-left: unquote(

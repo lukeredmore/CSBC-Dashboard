@@ -1,7 +1,6 @@
 .schedule-preview {
   margin-top: 24px;
   transition: 300ms ease all;
-
   tr {
     text-align: center;
   }
@@ -48,7 +47,6 @@
   }
 
   &:hover:not(.outlined) {
-    // opacity: 0.75 !important;
     cursor: pointer;
   }
   .times-table {
@@ -63,9 +61,9 @@
     margin: 0 auto;
   }
   .card-header {
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0) !important;
   }
   .card-footer {
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0) !important;
   }
 }
