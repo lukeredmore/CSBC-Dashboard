@@ -8,8 +8,9 @@ import {
   FormInput,
   Button,
   FormTextarea,
-  FormCheckbox
 } from "shards-react"
+
+import MyCheckbox from './MyCheckbox'
 
 import "./SchoolForm.scss"
 import { getDataFromRef, writeToRef } from "../firebase"
@@ -142,7 +143,7 @@ class SchoolForm extends React.Component {
               <label>Hours of Operation</label>
               <i className="fa fa-asterisk fa-xs" />
               <FormTextarea
-                className='hoo-text-area'
+                className="hoo-text-area"
                 name="hoo"
                 value={this.state.hoo}
                 onChange={this.handleChange}
@@ -164,20 +165,18 @@ class SchoolForm extends React.Component {
                 required
               />
             </Col>
-            <Col md="12" className="form-group">
-              <label>
-                Check here to automatically update the lunch menu
-                each month
-              </label>
-              <FormCheckbox
-                className="form-check"
-                inline
+            <div className='auto-update-check'>
+              <span className='text'>
+                Check here to automatically update the lunch menu each month:
+              </span>
+              <MyCheckbox
                 checked={this.state.autoURLUpdateEnabled}
                 onChange={() => {
-                  this.handleCheck("autoURLUpdateEnabled")
+                  this.handleCheck("autoURLUpdateEnabled");
                 }}
               />
-            </Col>
+            </div>
+            
           </Row>
 
           <div className="btn-form">
@@ -192,7 +191,7 @@ class SchoolForm extends React.Component {
           </div>
         </Form>
       </Card>
-    )
+    );
   }
 }
 

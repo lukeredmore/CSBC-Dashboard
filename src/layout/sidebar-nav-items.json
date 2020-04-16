@@ -15,6 +15,11 @@
       "to": "/schools"
     },
     {
+      "title": "Calendar",
+      "icon": "date_range",
+      "to": "/calendar"
+    },
+    {
       "title": "Bell Schedule",
       "icon": "schedule",
       "to": "/schedule"

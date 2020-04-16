@@ -2,7 +2,7 @@ import React from "react"
 import "./StudentPassInfo.scss"
 
 import { getDataFromRef } from "../../firebase"
-import { FormCheckbox } from "shards-react"
+import MyCheckbox from "../MyCheckbox"
 import LogModal from "./LogModal"
 
 class StudentPassInfo extends React.Component {
@@ -127,7 +127,7 @@ class StudentPassInfo extends React.Component {
       >
         <span className="custom-table-row-cell select-column">
           <div className="checkbox-container">
-            <FormCheckbox
+            <MyCheckbox
               checked={this.props.checked}
               name="checked"
               onChange={() => this.props.onClick(this.props.student)}

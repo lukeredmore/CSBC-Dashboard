@@ -51,7 +51,7 @@
         transform: translate(-50%, -50%);
       }
       @media only screen and (max-width: 225px) {
-        display: inline;
+        display: none;
       }
     }
     z-index: 999;
@@ -77,6 +77,16 @@
         padding-left: 5px;
         font-size: 16px;
         font-weight: 800;
+      }
+    }
+    .user-actions-container {
+      display: inline-block;
+      position: absolute;
+      right: 12px;
+      width: 170px;
+      top: 9px;
+      @media only screen and (max-width: 600px) {
+        right: 3px;
       }
     }
   }

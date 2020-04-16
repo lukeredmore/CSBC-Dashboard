@@ -31,7 +31,7 @@ const menuItems = [
 
 const MainFooter = () => (
   <footer className="main-footer d-flex p-2 px-3 bg-white border-top">
-    <Container style={{maxWidth: "100%"}} fluid={false}>
+    <Container style={{maxWidth: "100%", userSelect: 'none'}} fluid={false}>
       <Row>
         <Nav>
           {menuItems.map((item, idx) => (

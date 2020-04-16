@@ -4,7 +4,7 @@ import "./BasicLayout.scss";
 import UserActions from "./components/UserActions";
 import MainFooter from "./components/MainFooter";
 
-const BasicLayout = ({children}) => (
+const BasicLayout = ({ children }) => (
   <div className="basic-layout">
     <div className="user-container border-bottom">
       <div className="logo-container">
@@ -21,7 +21,9 @@ const BasicLayout = ({children}) => (
         src={require("../assets/lettermark.png")}
         alt="CSBC Dashboard"
       />
-      <UserActions />
+      <div className="user-actions-container">
+        <UserActions />
+      </div>
     </div>
     <div className="component">{children}</div>
     <MainFooter />

@@ -1,0 +1,24 @@
+.DayPicker-Day {
+    cursor: pointer !important;
+    &:focus {
+        box-shadow: none;
+        outline: none;
+    }
+    &.DayPicker-Day--selected {
+        background-color: red !important;
+    }
+    // background-color: green;
+}
+.DayPicker-Weekday {
+    // cursor: default !important;
+}
+
+.todo {
+    .modal {
+        overflow: scroll;
+        .modal-dialog {
+        max-width: 90%;
+    }
+    }
+    
+}
