@@ -16,7 +16,8 @@ class CalendarModal extends React.Component {
       this.setState({ selectedDates: this.props.selectedDates });
   }
 
-  onDayClick = date => {
+  onDayClick = (date, modifiers) => {
+    if (modifiers.disabled) return
     let dates = this.state.selectedDates;
     let dateString = date.toISOString().split("T")[0]
     let filteredArray = dates.filter(e => e !== dateString);
@@ -51,12 +52,17 @@ class CalendarModal extends React.Component {
             <DayPicker
               canChangeMonth={false}
               numberOfMonths={10}
-              initialMonth={new Date(2019, 8)}
-              // onDayMouseDown={this.onDayClick}
+              initialMonth={new Date(this.props.startDate + "T14:00:00.000Z")}
+              disabledDays={[
+                { daysOfWeek: [0, 6] },
+                {
+                  after: new Date(this.props.endDate + "T14:00:00.000Z"),
+                  before: new Date(this.props.startDate + "T14:00:00.000Z")
+                }
+              ]}
               selectedDays={this.state.selectedDates.map(
                 e => new Date(e + "T14:00:00.000Z")
               )}
-              //   onDayFocus={this.onDayClick}
               onDayClick={this.onDayClick}
             />
           </Modal>

@@ -108,7 +108,7 @@ class StudentPassInfo extends React.Component {
 
   async createGradeLevelMap() {
     const seniorsGradYear = Number(
-      (await getDataFromRef("Dates/endDate")).split("/")[0]
+      (await getDataFromRef("Dates/endDate")).split("-")[0]
     )
     var gradeLevelMap = {}
     gradeLevelMap[seniorsGradYear] = 12

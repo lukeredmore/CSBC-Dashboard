@@ -1,14 +1,18 @@
 .calendar-date-picker {
-  .dates-group {
+  .card-body {
+    padding-top: 4px;
+  }
+  .row {
+    padding: 16px 0;
+    border-bottom: 2px solid #eeeeee;
+    &:last-child {
+      border-bottom: 0px;
+      padding-bottom: 0px;
+    }
     display: flex;
-    justify-content: space-between;
-
     align-items: center;
-    margin-bottom: 16px;
 
     .dates-form-container {
-      display: inline-block;
-      width: 40%;
       .material-icons {
         transition: 300ms ease all;
       }
@@ -21,7 +25,7 @@
           0 0.25rem 0.5rem rgba(90, 97, 105, 0.12),
           0 0.9375rem 1.375rem rgba(90, 97, 105, 0.1),
           0 0.4375rem 2.1875rem rgba(0, 123, 255, 0.1);
-          border-color: #007bff88;
+        border-color: #007bff;
 
         .material-icons {
           color: #007bff;

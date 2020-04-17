@@ -5,33 +5,39 @@
       max-width: 90%;
 
       .header {
-          padding: 20px 30px 0px 30px;
-          width: 100%;
-          position: relative;
-          .button-container {
-              position: absolute;
-              right: 18px;
-              top: 11px;
-              button {
-                  margin-left: 16px;
-              }
+        padding: 20px 30px 0px 30px;
+        width: 100%;
+        position: relative;
+        .button-container {
+          position: absolute;
+          right: 18px;
+          top: 11px;
+          button {
+            margin-left: 16px;
           }
+        }
       }
-      .DayPicker-Day {
-        cursor: pointer !important;
+
+      .DayPicker, .DayPicker-wrapper, .DayPicker-Months {
         &:focus {
-          box-shadow: none;
           outline: none;
         }
-        &:hover {
+      }
+        .DayPicker-Day {
+          cursor: pointer !important;
+          &:focus {
+            box-shadow: none;
+            outline: none;
+          }
+          &:hover {
             background-color: #eeeeee !important;
-        }
-        transition: 300ms ease all;
-        &.DayPicker-Day--selected {
-            
-          background-color: rgb(221, 51, 51) !important;
+          }
+          transition: 300ms ease all;
+          &.DayPicker-Day--selected {
+            background-color: rgb(221, 51, 51) !important;
+          }
         }
       }
-    }
+    
   }
 }
