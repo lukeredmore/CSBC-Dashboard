@@ -5,6 +5,7 @@
   position: relative;
   left: 0;
   top: 0;
+  color: #454545;
   .component {
     flex: 1;
     width: calc(100% - env(safe-area-inset-left));
@@ -19,7 +20,7 @@
 
   .user-container {
     text-align: right;
-
+    user-select: none;
     @supports (padding: unquote("max(0px)")) {
       padding-right: unquote(
         "max(12px, calc(env(safe-area-inset-left)) - 20px)"
@@ -40,19 +41,6 @@
       display: none;
       width: 35px;
       user-select: none;
-      @media only screen and (max-width: 600px) and (min-width: 225px) {
-        display: inline;
-        width: 35px;
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-      }
-      @media only screen and (max-width: 225px) {
-        display: none;
-      }
     }
     z-index: 999;
 
@@ -69,9 +57,6 @@
         );
       }
       width: calc(210px + env(safe-area-inset-left));
-      @media only screen and (max-width: 600px) {
-        display: none;
-      }
       .wordmark {
         line-height: 40px;
         padding-left: 5px;
@@ -83,10 +68,15 @@
       display: inline-block;
       position: absolute;
       right: 12px;
-      width: 170px;
       top: 9px;
+      width: 170px;
+      height: 100%;
       @media only screen and (max-width: 600px) {
         right: 3px;
+      }
+      .user-actions-no-user {
+        position: relative;
+        top: 9px;
       }
     }
   }

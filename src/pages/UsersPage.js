@@ -7,14 +7,7 @@ import UsersViewer from "../my-components/Users/UsersViewer";
 const UsersPage = () => (
   <Container fluid className="main-content-container px-4 pb-4">
     {/* Page Header */}
-    <Row noGutters className="page-header py-4">
-      <PageTitle
-        sm="4"
-        title="Users"
-        subtitle="Dashboard"
-        className="text-sm-left"
-      />
-    </Row>
+    <PageTitle title="Users" subtitle="Dashboard" />
 
     <Row>
       <Col lg="12" md="12">

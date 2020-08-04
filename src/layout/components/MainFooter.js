@@ -2,10 +2,14 @@ import React from "react";
 import { Container, Row, Nav, NavItem, NavLink } from "shards-react";
 import { Link } from "react-router-dom";
 
+import './MainFooter.scss'
+
 const getCopyright = () => {
   const year = new Date().getFullYear()
   return "Copyright © " + year + " Catholic Schools of Broome County"
 }
+
+
 const menuItems = [
   {
     title: "Toggle Home",
@@ -31,7 +35,7 @@ const menuItems = [
 
 const MainFooter = () => (
   <footer className="main-footer d-flex p-2 px-3 bg-white border-top">
-    <Container style={{maxWidth: "100%", userSelect: 'none'}} fluid={false}>
+    <Container fluid={false}>
       <Row>
         <Nav>
           {menuItems.map((item, idx) => (

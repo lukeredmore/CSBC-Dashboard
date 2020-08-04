@@ -1,119 +1,119 @@
-import React from "react"
-import { Container, Row, Col, Alert } from "shards-react"
+import React from "react";
+import { Container, Row, Col, Alert } from "shards-react";
 
-import PageTitle from "../my-components/PageTitle"
+import PageTitle from "../my-components/PageTitle";
 
-import SchedulePreview from "../my-components/Schedule/SchedulePreview"
-import AddSchedulePreview from "../my-components/Schedule/AddSchedulePreview"
-import ModifyScheduleModal from "../my-components/Schedule/ModifyScheduleModal"
+import SchedulePreview from "../my-components/Schedule/SchedulePreview";
+import AddSchedulePreview from "../my-components/Schedule/AddSchedulePreview";
+import ModifyScheduleModal from "../my-components/Schedule/ModifyScheduleModal";
 
-import { getDataFromRef, writeToRef } from "../firebase"
+import { getDataFromRef, writeToRef } from "../firebase";
 
 class BellSchedule extends React.Component {
-  state = {}
+  state = {};
 
   async componentDidMount() {
-    await this.pullStateFromFirebase()
+    await this.pullStateFromFirebase();
   }
 
   ensureSomeScheduleIsChecked = () => {
     if (!this.scheduleExistsWithId(this.state.selectedID)) {
-      this.setSelectedID(1)
+      this.setSelectedID(1);
     }
-  }
+  };
 
   deleteSchedule = data => {
     const shouldDelete = window.confirm(
       "Are you sure you want to delete '" + data.title + "'?"
-    )
+    );
     if (!shouldDelete) {
-      return
+      return;
     }
-    var array = Array.from(this.state.schedules)
-    var index = array.indexOf(data)
+    var array = Array.from(this.state.schedules);
+    var index = array.indexOf(data);
     if (index !== -1) {
-      array.splice(index, 1)
+      array.splice(index, 1);
       this.setState({ schedules: array }, async () => {
-        this.modifyAndUpdateSchedule()
-        this.ensureSomeScheduleIsChecked()
-      })
+        this.modifyAndUpdateSchedule();
+        this.ensureSomeScheduleIsChecked();
+      });
     }
-  }
+  };
 
   selectScheduleToEdit = data => {
     this.setState({
       currentlyEditing: data,
       originalTimes: Array.from(data.times)
-    })
-  }
+    });
+  };
   modifyAndUpdateSchedule = () => {
     //The new data's already in the state, so no parameters needed
-    this.setState({ currentlyEditing: null })
-    this.ensureSomeScheduleIsChecked()
-    this.updateSchedulesInFirebase(this.state.schedules)
-  }
+    this.setState({ currentlyEditing: null });
+    this.ensureSomeScheduleIsChecked();
+    this.updateSchedulesInFirebase(this.state.schedules);
+  };
 
   pullStateFromFirebase = async () => {
-    const scheduleArray = await getDataFromRef("Schools/seton/schedules")
-    const scheduleInUse = await getDataFromRef("Schools/seton/scheduleInUse")
+    const scheduleArray = await getDataFromRef("Schools/seton/schedules");
+    const scheduleInUse = await getDataFromRef("Schools/seton/scheduleInUse");
     this.setState({
       schedules: scheduleArray,
       currentlyEditing: null,
       selectedID: scheduleInUse
-    })
-  }
+    });
+  };
   updateSchedulesInFirebase = async arr => {
     //data validation here
-    let params = "Schools/seton/schedules"
-    await writeToRef(params, arr)
-    this.showAutoDismissAlert("Schedule updated successfully!")
-  }
+    let params = "Schools/seton/schedules";
+    await writeToRef(params, arr);
+    this.showAutoDismissAlert("Schedule updated successfully!");
+  };
 
   setSelectedID = id => {
-    if (id === this.state.selectedID) return
+    if (id === this.state.selectedID) return;
     this.setState({ selectedID: id }, async () => {
-      let params = "Schools/seton/scheduleInUse"
-      await writeToRef(params, id)
-      this.showAutoDismissAlert("Schedule selected successfully!")
-      this.ensureSomeScheduleIsChecked()
-    })
-  }
+      let params = "Schools/seton/scheduleInUse";
+      await writeToRef(params, id);
+      this.showAutoDismissAlert("Schedule selected successfully!");
+      this.ensureSomeScheduleIsChecked();
+    });
+  };
 
   showAutoDismissAlert = message => {
     this.setState({ alertMessage: message }, () => {
       window.setTimeout(() => {
-        this.setState({ alertMessage: null })
-      }, 2500)
-    })
-  }
+        this.setState({ alertMessage: null });
+      }, 2500);
+    });
+  };
 
   createNewSchedule = () => {
-    let name = window.prompt("Enter a name for this new schedule: ")
-    if (!name || name === "" || name === " ") return
+    let name = window.prompt("Enter a name for this new schedule: ");
+    if (!name || name === "" || name === " ") return;
     this.setState({
       currentlyEditing: {
         title: name,
         id: this.getNewId(),
         times: ["", "", "", "", "", "", "", "", "", ""]
       }
-    })
-  }
+    });
+  };
 
   getNewId = () => {
-    const rand = Math.floor(Math.random() * 100)
+    const rand = Math.floor(Math.random() * 100);
     if (this.scheduleExistsWithId(rand)) {
-      this.getNewId()
+      this.getNewId();
     } else {
-      return rand
+      return rand;
     }
-  }
+  };
 
   scheduleExistsWithId = idToCheck => {
     return (
-      Array.from(this.state.schedules).filter(e => e.id === idToCheck).length !==
-      0
-    )
-  }
+      Array.from(this.state.schedules).filter(e => e.id === idToCheck)
+        .length !== 0
+    );
+  };
 
   render() {
     return (
@@ -130,14 +130,7 @@ class BellSchedule extends React.Component {
         </Container>
         <Container fluid className="main-content-container px-4 pb-4">
           {/* Page Header */}
-          <Row className="page-header py-4">
-            <PageTitle
-              sm="4"
-              title="Bell Schedule"
-              subtitle="App Dashboard"
-              className="text-sm-left"
-            />
-          </Row>
+          <PageTitle title="Bell Schedule" subtitle="App Dashboard" />
 
           <div className="schedule-helper">
             Select a schedule for today. Note that the selected schedule will
@@ -175,23 +168,23 @@ class BellSchedule extends React.Component {
           }
           data={this.state.currentlyEditing}
           onSubmit={this.modifyAndUpdateSchedule}
-          onCancel={(id) => {
+          onCancel={id => {
             let ogSchedules = this.state.schedules.map(e => {
-              let copied = e
-              if (copied.id === id) copied.times = this.state.originalTimes
-              return copied
-            })
+              let copied = e;
+              if (copied.id === id) copied.times = this.state.originalTimes;
+              return copied;
+            });
             this.setState({
               currentlyEditing: null,
               originalTimes: null,
               schedules: ogSchedules
-            })
+            });
           }}
           toggle={() => {}}
         />
       </div>
-    )
+    );
   }
 }
 
-export default BellSchedule
+export default BellSchedule;

@@ -13,6 +13,7 @@ import PassesOverview from "./pages/PassesOverview";
 import UsersPage from "./pages/UsersPage";
 import Calendar from './pages/Calendar'
 import Todo from "./pages/Todo";
+import HelpPage from './pages/HelpPage'
 
 import TogglePage from './pages/TogglePage'
 import BasicLayout from "./layout/BasicLayout"
@@ -84,7 +85,7 @@ export const routes = [
          {
            path: "/help",
            exact: true,
-           component: Todo,
+           component: HelpPage,
            layout: BasicLayout
          },
          {

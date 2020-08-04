@@ -1,0 +1,29 @@
+.my-page-title {
+  margin-top: 12px;
+  margin-bottom: 24px;
+  .page-subtitle {
+    letter-spacing: 0.125rem;
+    color: #818ea3;
+    font-size: 0.625rem;
+  }
+
+  .page-title {
+    font-size: 1.625rem;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media screen and (max-width: 767px) {
+    text-align: center;
+    margin-bottom: 16px;
+    .page-subtitle {
+      font-size: 0.75rem;
+    }
+
+    .page-title {
+      font-size: 1.75rem;
+    }
+  }
+}

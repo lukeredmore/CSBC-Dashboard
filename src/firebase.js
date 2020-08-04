@@ -96,6 +96,29 @@ export const sendAuthenticatedPostRequest = async (url, data) => {
   }
 };
 
+export const sendPostRequest = async (url, data) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(data)
+    };
+    console.log(config)
+    const response = await fetch(url, config);
+    console.log(response)
+    const status = response.status;
+    const message =  await response.json();
+    return { status, message}
+  } catch (err) {
+    return {
+      status: 500,
+      message: err
+    };
+  }
+};
+
 export const verifyLoginStatus = () => {
   return auth.currentUser
 }

@@ -3,19 +3,12 @@ import { Container, Row, Col } from "shards-react";
 
 import PageTitle from "../my-components/PageTitle";
 
-import SchoolForm from '../my-components/SchoolForm'
+import SchoolForm from "../my-components/SchoolForm";
 
 const SchoolPage = () => (
   <Container fluid className="main-content-container px-4 pb-4">
     {/* Page Header */}
-    <Row className="page-header py-4">
-      <PageTitle
-        sm="4"
-        title="Edit School Information"
-        subtitle="App Dashboard"
-        className="text-sm-left"
-      />
-    </Row>
+    <PageTitle title="Edit School Information" subtitle="App Dashboard" />
 
     <Row>
       <Col lg="6">
@@ -32,6 +25,6 @@ const SchoolPage = () => (
       </Col>
     </Row>
   </Container>
-)
+);
 
 export default SchoolPage;
