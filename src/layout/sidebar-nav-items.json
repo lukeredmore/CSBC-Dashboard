@@ -1,23 +1,23 @@
 [
     {
-      "title": "Add New Post",
-      "icon": "note_add",
-      "to": "/add-new-post"
-    },
-    {
-      "title": "Forms & Components",
-      "icon": "view_module",
-      "to": "/components-overview"
-    },
-    {
       "title": "School Information",
       "icon": "school",
       "to": "/schools"
     },
     {
+      "title": "COVID-19 Settings",
+      "icon": "coronavirus",
+      "to": "/covid-19"
+    },
+    {
       "title": "Calendar",
       "icon": "date_range",
       "to": "/calendar"
+    },
+    {
+      "title": "Users",
+      "icon": "person",
+      "to": "/users"
     },
     {
       "title": "Bell Schedule",
@@ -28,15 +28,5 @@
       "title": "Passes",
       "icon": "style",
       "to": "/passes"
-    },
-    {
-      "title": "Users",
-      "icon": "person",
-      "to": "/users"
-    },
-    {
-      "title": "TODO",
-      "icon": "",
-      "to": "/todo"
     }
   ]

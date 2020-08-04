@@ -21,10 +21,10 @@ body {
 }
 
 a {
-  color: #007bff;
+  color: #154734;
   text-decoration: none;
   &:hover {
-    color: #0056b3;
+    color: #0b2c1f;
     text-decoration: underline;
   }
 }
@@ -138,14 +138,14 @@ h6,
 
     &:focus {
       & ~ .custom-file-label {
-        border-color: #007bff;
+        border-color: #154734;
         color: #495057;
         box-shadow: 0 0.313rem 0.719rem rgba(0, 123, 255, 0.1),
           0 0.156rem 0.125rem rgba(0, 0, 0, 0.06);
 
         &::after {
-          border-color: #007bff;
-          color: #007bff;
+          border-color: #154734;
+          color: #154734;
           background: #e6f2ff;
         }
       }
@@ -214,11 +214,11 @@ h6,
   }
 }
 .btn {
-  $primary: #007bff;
+  $primary: #154734;
   $primary-text: white;
-  $primary-hover: #006fe6;
+  $primary-hover: #0f4b33;
   $primary-disabled: #a0bcd3;
-  $primary-dropdown: #0062cc;
+  $primary-dropdown: #0b2c1f;
 
   $secondary: #5a6169;
   $secondary-text: white;
@@ -473,12 +473,12 @@ h6,
   &:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #007bff;
+    border-color: #154734;
     box-shadow: 0 0.313rem 0.719rem rgba(0, 123, 255, 0.1),
       0 0.156rem 0.125rem rgba(0, 0, 0, 0.06);
   }
   &:focus:hover {
-    border-color: #007bff;
+    border-color: #154734;
   }
   &::placeholder {
     color: #868e96;
@@ -538,7 +538,7 @@ i.material-icons {
 // .custom-control-input:checked ~ .custom-control-label::before {
 //   color: #fff;
 //   border-color: transparent;
-//   background-color: #007bff;
+//   background-color: #154734;
 //   box-shadow: none;
 // }
 
@@ -620,7 +620,7 @@ i.material-icons {
 //   .custom-control-input:indeterminate
 //   ~ .custom-control-label::before {
 //   border: none;
-//   background-color: #007bff;
+//   background-color: #154734;
 //   box-shadow: none;
 // }
 
@@ -677,7 +677,7 @@ i.material-icons {
 
 .alert-primary {
   color: #f5faff;
-  background-color: #007bff;
+  background-color: #154734;
 }
 .alert-primary .alert-link {
   color: #f5faff;

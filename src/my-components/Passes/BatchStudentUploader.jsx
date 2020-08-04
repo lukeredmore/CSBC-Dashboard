@@ -28,7 +28,7 @@ class BatchStudentUploader extends React.Component {
           {" "}
           Upload a .csv file to add many students at once. Click{" "}
           <span
-            style={{ color: "#007bff", cursor: "pointer" }}
+            style={{ color: "#154734", cursor: "pointer" }}
             onClick={() => this.setState({ helperModalShown: true })}
           >
             here

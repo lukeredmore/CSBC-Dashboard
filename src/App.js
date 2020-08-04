@@ -37,11 +37,11 @@ class App extends React.Component {
                 (this.props.currentUser && verifyLoginStatus()) ||
                 !route.requiresLogin ? (
                   route.layout ? (
-                    <route.layout {...props}>
+                    <route.layout {...props} unused={route.unused}>
                       <route.component {...props} />
                     </route.layout>
                   ) : (
-                    <route.component {...props} />
+                    <route.component {...props} unused={route.unused} />
                   )
                 ) : (
                   <LoginPage />
@@ -59,7 +59,7 @@ class App extends React.Component {
                 this.props.currentUser &&
                 this.props.currentUser.dashboardAccess &&
                 verifyLoginStatus() ? (
-                  <route.layout {...props}>
+                  <route.layout {...props} unused={route.unused}>
                     <route.component {...props} />
                   </route.layout>
                 ) : this.props.currentUser && verifyLoginStatus ? (

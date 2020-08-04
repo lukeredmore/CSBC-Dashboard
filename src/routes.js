@@ -5,8 +5,6 @@ import { Redirect } from "react-router-dom";
 import AdminLayout from "./layout/AdminLayout";
 
 // Route Views
-import AddNewPost from "./pages/AddNewPost";
-import ComponentsOverview from "./pages/ComponentsOverview";
 import SchoolPage from "./pages/SchoolPage";
 import BellSchedule from "./pages/BellSchedule";
 import PassesOverview from "./pages/PassesOverview";
@@ -14,6 +12,7 @@ import UsersPage from "./pages/UsersPage";
 import Calendar from './pages/Calendar'
 import Todo from "./pages/Todo";
 import HelpPage from './pages/HelpPage'
+import CovidPage from './pages/CovidPage'
 
 import TogglePage from './pages/TogglePage'
 import BasicLayout from "./layout/BasicLayout"
@@ -24,18 +23,6 @@ export const adminRoutes = [
            exact: true,
            layout: AdminLayout,
            component: () => <Redirect to="/admin/schools" />
-         },
-         {
-           path: "/add-new-post",
-           exact: true,
-           layout: AdminLayout,
-           component: AddNewPost
-         },
-         {
-           path: "/components-overview",
-           exact: true,
-           layout: AdminLayout,
-           component: ComponentsOverview
          },
          {
            path: "/schools",
@@ -53,19 +40,27 @@ export const adminRoutes = [
            path: "/schedule",
            exact: true,
            layout: AdminLayout,
-           component: BellSchedule
+           component: BellSchedule,
+           unused: true
          },
          {
            path: "/passes",
            exact: true,
            layout: AdminLayout,
-           component: PassesOverview
+           component: PassesOverview,
+           unused: true
          },
          {
            path: "/users",
            exact: true,
            layout: AdminLayout,
            component: UsersPage
+         },
+         {
+           path: "/covid-19",
+           exact: true,
+           layout: AdminLayout,
+           component: CovidPage
          },
          {
            path: "/todo",

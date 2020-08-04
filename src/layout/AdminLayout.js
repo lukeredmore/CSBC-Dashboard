@@ -6,6 +6,7 @@ import MainFooter from './components/MainFooter'
 import Logo from "../assets/lettermark.png"
 
 import items from "./sidebar-nav-items.json";
+import { Alert } from "shards-react"
 
 class AdminLayout extends React.Component {
   state = {
@@ -82,6 +83,14 @@ class AdminLayout extends React.Component {
             (this.state.contentCoveredOnNarrowView ? " covered" : "")
           }
         >
+          {this.props.unused && (
+            <Alert className="unused-alert" theme="danger">
+              <i className="fa fa-info" />
+              NOTICE: This page is currently in development and/or not being
+              used. It is unstable and editing things on this page may have
+              unexpected consequences. But, feel free to look around :)
+            </Alert>
+          )}
           <div className="component">{this.props.children}</div>
           <MainFooter />
         </div>
