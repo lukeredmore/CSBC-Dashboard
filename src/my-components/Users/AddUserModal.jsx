@@ -99,14 +99,14 @@ class AddUserModal extends React.Component {
                 />
               </div>
               <div className="user-editor-row">
-                <span>Notify Of Outstanding Students (> 15 min)</span>
+                <span>{'Notify Of Outstanding Students (> 15 min)'}</span>
                 <MyCheckbox
                   checked={this.state.data.notifyOutstanding}
                   onChange={() => this.handleCheck("notifyOutstanding")}
                 />
               </div>
               <div className="user-editor-row">
-                <span>Access To Full Dashboard</span>
+                <span>Access Dashboard</span>
                 <MyCheckbox
                   disabled={this.props.user.email === this.state.data.email}
                   checked={this.state.data.dashboardAccess}

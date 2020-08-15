@@ -14,7 +14,7 @@ import Todo from "./pages/Todo";
 import HelpPage from './pages/HelpPage'
 import CovidPage from './pages/CovidPage'
 
-import TogglePage from './pages/TogglePage'
+// import TogglePage from './pages/TogglePage'
 import BasicLayout from "./layout/BasicLayout"
 
 export const adminRoutes = [
@@ -71,10 +71,16 @@ export const adminRoutes = [
        ];
 
 export const routes = [
+         //  {
+         //    path: "/",
+         //    exact: true,
+         //    component: TogglePage,
+         //    requiresLogin: true
+         //  },
          {
            path: "/",
            exact: true,
-           component: TogglePage,
+           component: () => <Redirect to='/admin/schools' />,
            requiresLogin: true
          },
          {

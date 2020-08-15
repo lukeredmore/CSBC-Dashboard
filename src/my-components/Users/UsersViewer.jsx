@@ -104,7 +104,7 @@ class UsersViewer extends React.Component {
                     Notify Of Outstanding Students
                   </th>
                   <th scope="col" className="border-0">
-                    Access Full Dashboard
+                    Access Dashboard
                   </th>
                   <th scope="col" className="border-0">
                     Can Send Notifications To

@@ -40,7 +40,7 @@ export function* createVerifiedUser(user) {
     let allUsers = yield getDataFromRef("Users");
 
     let shouldAllow = Object.entries(allUsers).find(
-      ([key, val]) => user.email === val.email && val.toggleAccess
+      ([_, val]) => user.email === val.email
     )
     if (!shouldAllow) return null;
     if (shouldAllow[1].dashboardAccess) dashboardAccess = true
@@ -55,7 +55,6 @@ export function* createVerifiedUser(user) {
   } catch {
     return null;
   }
-
   return {
     id: user.uid,
     email: user.email,
