@@ -1,0 +1,40 @@
+.my-switch {
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  label {
+    margin: 0;
+    cursor: pointer !important;
+    text-indent: -9999px;
+    width: 54px;
+    height: 30px;
+    background: grey;
+    display: block;
+    border-radius: 50px;
+    position: relative;
+    // bottom: 9px;
+    transition: 300ms ease all;
+  }
+
+  label:after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 26px;
+    height: 26px;
+    background: #fff;
+    border-radius: 13px;
+    transition: 0.3s;
+  }
+
+  input:checked + label {
+    background: #74da55;
+  }
+
+  input:checked + label:after {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+  }
+}

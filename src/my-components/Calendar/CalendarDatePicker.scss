@@ -13,6 +13,13 @@
     align-items: center;
 
     .dates-form-container {
+      .form-control {
+        font-style: italic;
+
+        &:disabled {
+          background-color: white;
+        }
+      }
       .material-icons {
         transition: 300ms ease all;
       }
@@ -21,10 +28,8 @@
       border-radius: 5px;
       cursor: pointer !important;
       &:hover {
-        box-shadow: 0 0.125rem 5.375rem rgba(90, 97, 105, 0.1),
-          0 0.25rem 0.5rem rgba(90, 97, 105, 0.12),
-          0 0.9375rem 1.375rem rgba(90, 97, 105, 0.1),
-          0 0.4375rem 2.1875rem rgba(0, 123, 255, 0.1);
+        box-shadow: 0 0.125rem 5.375rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.5rem rgba(90, 97, 105, 0.12),
+          0 0.9375rem 1.375rem rgba(90, 97, 105, 0.1), 0 0.4375rem 2.1875rem rgba(0, 123, 255, 0.1);
         border-color: #154734;
 
         .material-icons {

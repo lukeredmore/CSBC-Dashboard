@@ -1,0 +1,61 @@
+.single-item-editor {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  .single-item-label {
+    position: relative;
+    margin-right: 6px;
+  }
+
+  &:hover {
+    &.clickable {
+      cursor: pointer;
+      .value-displayer {
+        text-decoration: underline;
+      }
+    }
+  }
+  .editor-container {
+    position: relative;
+    .cover {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+
+    form {
+      position: relative;
+      z-index: 999;
+      cursor: default !important;
+      .material-icons {
+        user-select: none;
+        margin-left: 12px;
+        font-size: 1.25rem;
+        color: #888888;
+      }
+      .icon-container {
+        margin: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      display: inline-flex;
+      align-items: center;
+      .editor {
+        display: inline-block;
+      }
+    }
+  }
+  .value-displayer {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 5px;
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+}

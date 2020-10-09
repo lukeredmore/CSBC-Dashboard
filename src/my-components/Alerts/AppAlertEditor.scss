@@ -1,0 +1,48 @@
+.app-alert-editor {
+  margin-bottom: 12px;
+
+  .card-body {
+    position: relative;
+    min-height: 100px;
+  }
+
+  .switch-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .form-inline {
+    @media (max-width: 800px) {
+      flex-direction: column;
+      align-items: stretch;
+
+      label {
+        justify-content: left;
+      }
+    }
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    label {
+      margin: 5px 10px 5px 0;
+      cursor: text;
+    }
+
+    .form-control {
+      flex-grow: 1;
+    }
+
+    .form-footer {
+      display: inline-block;
+      width: 100%;
+      margin-top: 16px;
+      .btn-form {
+        margin-right: 15px;
+        display: inline-block;
+      }
+    }
+  }
+}

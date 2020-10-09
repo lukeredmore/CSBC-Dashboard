@@ -13,6 +13,7 @@ import Calendar from './pages/Calendar'
 import Todo from "./pages/Todo";
 import HelpPage from './pages/HelpPage'
 import CovidPage from './pages/CovidPage'
+import AlertPage from "./pages/AlertPage";
 
 // import TogglePage from './pages/TogglePage'
 import BasicLayout from "./layout/BasicLayout"
@@ -61,6 +62,12 @@ export const adminRoutes = [
            exact: true,
            layout: AdminLayout,
            component: CovidPage
+         },
+         {
+           path: "/alerts",
+           exact: true,
+           layout: AdminLayout,
+           component: AlertPage
          },
          {
            path: "/todo",

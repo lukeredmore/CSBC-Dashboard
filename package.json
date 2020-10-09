@@ -37,9 +37,9 @@
     "shortid": "^2.2.14"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "cross-env REACT_APP_BASENAME=/ react-scripts build && firebase deploy",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "cross-env REACT_APP_BASENAME=/ react-app-rewired build && firebase deploy",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -52,7 +52,17 @@
     "not op_mini all"
   ],
   "prettier": {
-    "jsxBracketSameLine:": true,
-    "arrowParens": "avoid"
+    "jsxBracketSameLine": true,
+    "arrowParens": "avoid",
+    "jsxSingleQuote": true,
+    "printWidth": 140,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.11.0",
+    "customize-cra": "^1.0.0",
+    "react-app-rewired": "^2.1.6"
   }
 }

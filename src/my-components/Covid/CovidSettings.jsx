@@ -5,37 +5,47 @@ import MyCheckbox from "../MyCheckbox";
 import { writeToRef, getContinuousDataFromRef } from "../../firebase";
 import { useState } from "react";
 import { useEffect } from "react";
+import MySwitch from "../MySwitch"
+import SingleItemEditor from "../SingleItemEditor"
 
 export default () => {
-  const [showCovidCheckIn, setShowCovidCheckIn] = useState(false);
+  const [generalInfo, setGeneralInfo] = useState(false);
 
-  const setShowCovidCheckInRef = useState(null)[1];
+  const setGeneralInfoRef = useState(null)[1];
 
   useEffect(() => {
-    setShowCovidCheckInRef(
-      getContinuousDataFromRef("Schools/general/showCovidCheckIn", val =>
-        setShowCovidCheckIn(val)
-      )
-    )
-    return setShowCovidCheckInRef(null)
+    setGeneralInfoRef(
+      getContinuousDataFromRef("Schools/general", val => setGeneralInfo(val))
+    );
+    return setGeneralInfoRef(null);
     }, []);
 
   return (
     <div className="covid-settings">
       <Card>
         <CardBody>
-          <div className='item-row'>
+          <div className="item-row">
             Show Check-In Questionnaire On CSBC App:
-            <MyCheckbox
-              checked={showCovidCheckIn}
+            <MySwitch
+              checked={generalInfo.showCovidCheckIn}
               onChange={() =>
                 writeToRef(
                   "Schools/general/showCovidCheckIn",
-                  !showCovidCheckIn
+                  !generalInfo.showCovidCheckIn
                 )
               }
-            />{" "}
+            />
           </div>
+          <SingleItemEditor
+            onSubmit={e =>
+              writeToRef("Schools/general/familyCovidCheckInCode", e)
+            }
+            className="mt-2 code-editor"
+            type="text"
+            placeholder="MobileCause Form Code (6 numbers/letters after '/form/' in check-in URL)"
+            editable
+            value={generalInfo.familyCovidCheckInCode}
+          />
         </CardBody>
       </Card>
     </div>

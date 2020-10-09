@@ -1,0 +1,25 @@
+.send-notification-card {
+
+
+    .label-row {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 6px;
+        .fa.fa-asterisk.xs {
+            font-size: 9px;
+            color: #c4183c;
+            margin-left: 4px;
+
+        }
+    }
+    .btn-primary { 
+        display: flex;
+        align-items: center;
+        margin-top: 24px;
+        i.material-icons {
+        font-size: 16px;
+        margin-left: 8px;
+        
+    }}
+}

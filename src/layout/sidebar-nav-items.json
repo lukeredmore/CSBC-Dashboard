@@ -1,32 +1,37 @@
 [
-    {
-      "title": "School Information",
-      "icon": "school",
-      "to": "/schools"
-    },
-    {
-      "title": "COVID-19 Settings",
-      "icon": "coronavirus",
-      "to": "/covid-19"
-    },
-    {
-      "title": "Calendar",
-      "icon": "date_range",
-      "to": "/calendar"
-    },
-    {
-      "title": "Users",
-      "icon": "person",
-      "to": "/users"
-    },
-    {
-      "title": "Bell Schedule",
-      "icon": "schedule",
-      "to": "/schedule"
-    },
-    {
-      "title": "Passes",
-      "icon": "style",
-      "to": "/passes"
-    }
-  ]
+  {
+    "title": "Alerts & Notifications",
+    "icon": "notifications",
+    "to": "/alerts"
+  },
+  {
+    "title": "COVID-19 Settings",
+    "icon": "coronavirus",
+    "to": "/covid-19"
+  },
+  {
+    "title": "School Information",
+    "icon": "school",
+    "to": "/schools"
+  },
+  {
+    "title": "Calendar",
+    "icon": "date_range",
+    "to": "/calendar"
+  },
+  {
+    "title": "Users",
+    "icon": "person",
+    "to": "/users"
+  },
+  {
+    "title": "Bell Schedule",
+    "icon": "schedule",
+    "to": "/schedule"
+  },
+  {
+    "title": "Passes",
+    "icon": "style",
+    "to": "/passes"
+  }
+]

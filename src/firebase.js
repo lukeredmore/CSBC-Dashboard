@@ -34,8 +34,17 @@ export const getContinuousDataFromRef = async (refString, callback) => {
 };
 
 export const writeToRef = async (refString, data) => {
-  var dataRef = await firebase.database().ref(refString).set(data);
-  return dataRef;
+  try {
+    await firebase
+      .database()
+      .ref(refString)
+      .set(data);
+    return true;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+  
 };
 
 export const pushToRef = async (refString, data) => {
