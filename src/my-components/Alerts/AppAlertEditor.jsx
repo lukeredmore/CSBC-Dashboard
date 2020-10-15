@@ -7,7 +7,7 @@ import MySwitch from "../MySwitch"
 import LoadingSymbol from '../Login/LoadingSymbol'
 
 export default () => {
-  const [_, setBannerAlertListener] = useState(null);
+  const setBannerAlertListener = useState(null)[1];
   const [bannerAlert, setBannerAlert] = useState(null);
 
   useEffect(() => {

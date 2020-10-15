@@ -2,9 +2,9 @@ import React from "react";
 
 
 
-import MyCheckbox from '../my-components/MyCheckbox'
-import { FormCheckbox, FormInput, Modal, Button } from 'shards-react'
-import DayPicker from "react-day-picker";
+// import MyCheckbox from '../my-components/MyCheckbox'
+import { Button } from 'shards-react'
+// import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 
 import { getDataFromRef, writeToRef } from "../firebase";

@@ -70,9 +70,6 @@ class CalendarDatePicker extends React.Component {
             </CardHeader>
             <CardBody>
               <br />
-              <i>For COVID-19 related closures, please do not put them under 'Snow Days'.</i>
-              <br />
-              <br />
               Use this tool to keep the calendar that governs the CSBC app up to date. This calendar controls the day schedule, so every
               date selected on this page (with the exception of the first and last day) will be skipped when calculating the day schedule.
               As the high school is on a different schedule than the elementary schools, there are separate fields to modify each

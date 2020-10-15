@@ -1,7 +1,6 @@
 import React from "react";
 import "./CovidSettings.scss";
 import { Card, CardBody } from "shards-react";
-import MyCheckbox from "../MyCheckbox";
 import { writeToRef, getContinuousDataFromRef } from "../../firebase";
 import { useState } from "react";
 import { useEffect } from "react";
