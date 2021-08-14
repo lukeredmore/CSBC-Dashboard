@@ -23,15 +23,5 @@
     "title": "Users",
     "icon": "person",
     "to": "/users"
-  },
-  {
-    "title": "Bell Schedule",
-    "icon": "schedule",
-    "to": "/schedule"
-  },
-  {
-    "title": "Passes",
-    "icon": "style",
-    "to": "/passes"
   }
 ]

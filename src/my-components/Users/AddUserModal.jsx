@@ -13,7 +13,9 @@ import {
 import { sendAuthenticatedPostRequest } from "../../firebase"
 import { connect } from "react-redux"
 import constants from '../../client-side-private-files.json'
-import MyCheckbox from '../MyCheckbox'
+import MySwitch from "../MySwitch"
+
+import './AddUserModal.scss'
 
 class AddUserModal extends React.Component {
   state = {
@@ -85,29 +87,8 @@ class AddUserModal extends React.Component {
                 />
               </div>
               <div className="user-editor-row">
-                <span>Toggle Students</span>
-                <MyCheckbox
-                  checked={this.state.data.toggleAccess}
-                  onChange={() => this.handleCheck("toggleAccess")}
-                />
-              </div>
-              <div className="user-editor-row">
-                <span>Access Basic Pass Info</span>
-                <MyCheckbox
-                  checked={this.state.data.passAccess}
-                  onChange={() => this.handleCheck("passAccess")}
-                />
-              </div>
-              <div className="user-editor-row">
-                <span>{'Notify Of Outstanding Students (> 15 min)'}</span>
-                <MyCheckbox
-                  checked={this.state.data.notifyOutstanding}
-                  onChange={() => this.handleCheck("notifyOutstanding")}
-                />
-              </div>
-              <div className="user-editor-row">
                 <span>Access Dashboard</span>
-                <MyCheckbox
+                <MySwitch
                   disabled={this.props.user.email === this.state.data.email}
                   checked={this.state.data.dashboardAccess}
                   onChange={() => {

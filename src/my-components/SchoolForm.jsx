@@ -14,6 +14,7 @@ import MyCheckbox from './MyCheckbox'
 
 import "./SchoolForm.scss"
 import { getDataFromRef, writeToRef } from "../firebase"
+import MySwitch from "./MySwitch"
 
 class SchoolForm extends React.Component {
   state = {
@@ -167,9 +168,9 @@ class SchoolForm extends React.Component {
             </Col>
             <div className='auto-update-check'>
               <span className='text'>
-                Check here to automatically update the lunch menu each month:
+                Try to automatically update the lunch menu each month:
               </span>
-              <MyCheckbox
+              <MySwitch
                 checked={this.state.autoURLUpdateEnabled}
                 onChange={() => {
                   this.handleCheck("autoURLUpdateEnabled");

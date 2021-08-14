@@ -3,9 +3,9 @@ import "./UsersViewer.scss";
 
 import { Card, CardBody, CardHeader } from "shards-react"
 import { getContinuousDataFromRef } from "../../firebase"
-import PlusButton from "../Passes/PlusButton"
+import PlusButton from "../Other/PlusButton"
 import AddUserModal from "./AddUserModal"
-import ExpandableSearchField from "../Passes/ExpandableSearchField";
+import ExpandableSearchField from "../Other/ExpandableSearchField";
 import constants from '../../constants.json'
 
 class UsersViewer extends React.Component {
@@ -62,10 +62,10 @@ class UsersViewer extends React.Component {
                       null,
                       {
                         name: name,
-                        toggleAccess: true,
-                        passAccess: true,
-                        notifyOutstanding: true,
-                        dashboardAccess: false,
+                        toggleAccess: false,
+                        passAccess: false,
+                        notifyOutstanding: false,
+                        dashboardAccess: true,
                         notificationSchool: null
                       }
                     ]
@@ -95,15 +95,6 @@ class UsersViewer extends React.Component {
                     Email
                   </th>
                   <th scope="col" className="border-0">
-                    Toggle Students
-                  </th>
-                  <th scope="col" className="border-0">
-                    Access Basic Pass Info
-                  </th>
-                  <th scope="col" className="border-0">
-                    Notify Of Outstanding Students
-                  </th>
-                  <th scope="col" className="border-0">
                     Access Dashboard
                   </th>
                   <th scope="col" className="border-0">
@@ -122,36 +113,6 @@ class UsersViewer extends React.Component {
                   >
                     <td>{val.name}</td>
                     <td>{val.email}</td>
-                    <td>
-                      <i
-                        className={
-                          "material-icons " +
-                          (val.toggleAccess ? "allowed" : "not-allowed")
-                        }
-                      >
-                        fiber_manual_record
-                      </i>
-                    </td>
-                    <td>
-                      <i
-                        className={
-                          "material-icons " +
-                          (val.passAccess ? "allowed" : "not-allowed")
-                        }
-                      >
-                        fiber_manual_record
-                      </i>
-                    </td>
-                    <td>
-                      <i
-                        className={
-                          "material-icons " +
-                          (val.notifyOutstanding ? "allowed" : "not-allowed")
-                        }
-                      >
-                        fiber_manual_record
-                      </i>
-                    </td>
                     <td>
                       <i
                         className={

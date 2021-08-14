@@ -1,5 +1,5 @@
 .my-switch {
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     display: none;
   }
 
@@ -13,12 +13,12 @@
     display: block;
     border-radius: 50px;
     position: relative;
-    // bottom: 9px;
     transition: 300ms ease all;
+    display: inline-block;
   }
 
   label:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 2px;
     left: 2px;
@@ -36,5 +36,10 @@
   input:checked + label:after {
     left: calc(100% - 2px);
     transform: translateX(-100%);
+  }
+
+  &.disabled label {
+    cursor: not-allowed !important;
+    opacity: 50% !important;
   }
 }

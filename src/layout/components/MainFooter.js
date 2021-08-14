@@ -12,10 +12,6 @@ const getCopyright = () => {
 
 const menuItems = [
   {
-    title: "Toggle Home",
-    to: "/"
-  },
-  {
     title: "Dashboard Home",
     to: "/admin"
   },

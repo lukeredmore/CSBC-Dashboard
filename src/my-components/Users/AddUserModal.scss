@@ -1,0 +1,15 @@
+.add-user-modal {
+    .user-editor-row {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        span:first-child {
+            margin-right: 8px;
+        }
+        span.my-switch {
+            transform: scale(0.8);
+        }
+    }
+}
