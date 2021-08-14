@@ -1,33 +1,47 @@
 .day-viewer {
- text-align: center;   
+  text-align: center;
 
- .date-header {
-     font-size: 16px;
-     user-select: none;
-     .day-change-arrow-icon {
-         
-         cursor: pointer;
-         position: relative;
-         top: 2px;
-     }
- }
+  .date-header {
+    font-size: 16px;
+    user-select: none;
+    position: relative;
+    .day-change-arrow-icon {
+      cursor: pointer;
+      position: relative;
+      top: 2px;
+    }
+    .next-day-hitbox,
+    .prev-day-hitbox {
+      position: absolute;
+      width: 50%;
+      top: 0;
+      bottom: 0;
+      cursor: pointer;
+    }
+    .prev-day-hitbox {
+      left: 0;
+    }
+    .next-day-hitbox {
+      right: 0;
+    }
+  }
 
- .day-label {
-     letter-spacing: 0.125rem;
+  .day-label {
+    letter-spacing: 0.125rem;
     color: #818ea3;
     font-size: 0.625rem;
     position: relative;
     top: 8px;
- }
+  }
 
- .day-value {
-     font-size: 48px;
-     font-weight: 700;
- }
+  .day-value {
+    font-size: 48px;
+    font-weight: 700;
+  }
 
- .school-label {
-     font-style: italic;
-     position: relative;
-     bottom: 8px;
- }
+  .school-label {
+    font-style: italic;
+    position: relative;
+    bottom: 8px;
+  }
 }

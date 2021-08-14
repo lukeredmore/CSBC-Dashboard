@@ -20,36 +20,37 @@ export default () => {
     }
   }, [])
 
-
   if (!daySchedule) return null
   return (
     <div className='day-viewer mt-3 mb-3'>
       <div className='date-header'>
-        <i
-          className='material-icons day-change-arrow-icon'
+        <i className='material-icons day-change-arrow-icon'>navigate_before</i>
+        {dateToShow.split('T')[0] === new Date().toISOString().split('T')[0]
+          ? 'Today'
+          : new Date(dateToShow).toLocaleDateString('en-us', {
+              timeZone: 'America/New_York',
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+        <i className='material-icons day-change-arrow-icon'>navigate_next</i>
+        <div
+          className='prev-day-hitbox'
           onClick={() => {
             let previousDay = new Date(dateToShow)
             previousDay.setDate(previousDay.getDate() - 1)
             setDateToShow(previousDay.toISOString())
-          }}>
-          navigate_before
-        </i>
-        {dateToShow.split('T')[0] === new Date().toISOString().split('T')[0] ? 'Today' : new Date(dateToShow).toLocaleDateString('en-us', {
-          timeZone: 'America/New_York',
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })}
-        <i
-          className='material-icons day-change-arrow-icon'
+          }}
+        />
+        <div
+          className='next-day-hitbox'
           onClick={() => {
-              let nextDay = new Date(dateToShow)
-              nextDay.setDate(nextDay.getDate() + 1)
+            let nextDay = new Date(dateToShow)
+            nextDay.setDate(nextDay.getDate() + 1)
             setDateToShow(nextDay.toISOString())
-          }}>
-          navigate_next
-        </i>
+          }}
+        />
       </div>
 
       <Row>

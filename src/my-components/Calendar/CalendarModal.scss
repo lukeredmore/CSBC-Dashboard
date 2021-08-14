@@ -18,26 +18,27 @@
         }
       }
 
-      .DayPicker, .DayPicker-wrapper, .DayPicker-Months {
+      .DayPicker,
+      .DayPicker-wrapper,
+      .DayPicker-Months {
         &:focus {
           outline: none;
         }
       }
-        .DayPicker-Day {
-          cursor: pointer !important;
-          &:focus {
-            box-shadow: none;
-            outline: none;
-          }
-          &:hover {
-            background-color: #eeeeee !important;
-          }
-          transition: 300ms ease all;
-          &.DayPicker-Day--selected {
-            background-color: rgb(221, 51, 51) !important;
-          }
+      .DayPicker-Day {
+        cursor: pointer !important;
+        &:focus {
+          box-shadow: none;
+          outline: none;
+        }
+        &:hover {
+          background-color: #eeeeee !important;
+        }
+        transition: 300ms ease all;
+        &.DayPicker-Day--selected {
+          background-color: rgb(221, 51, 51) !important;
         }
       }
-    
+    }
   }
 }
