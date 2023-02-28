@@ -3,6 +3,7 @@ import "firebase/database";
 import "firebase/auth";
 
 import keys from "./client-side-private-files.json";
+import { useEffect, useState } from "react"
 
 const firebaseConfig = {
   apiKey: keys.FIREBASE_API_KEY,
